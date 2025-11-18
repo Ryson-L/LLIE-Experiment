@@ -1,0 +1,11 @@
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 大模型权重，不放进仓库
+*.pth
+*.pt
+
+# 实验输出目录（根据你实际情况调整）
+third party/DRBN_SKF/experiment/
+third party/DRBN_SKF/ckpt/
