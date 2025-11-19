@@ -12,3 +12,5 @@ third-party/DRBN_SKF/ckpt/
 
 # 数据集
 third-party/DRBN_SKF/dataset/
+dataset/dataset_512/
+dataset/raw_downloads/
