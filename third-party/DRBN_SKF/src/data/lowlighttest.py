@@ -11,7 +11,7 @@ class LowLightTest(srdata.SRData):
     def _set_filesystem(self, dir_data):
 
         super(LowLightTest, self)._set_filesystem(dir_data)
-        self.apath = os.path.join(dir_data, 'LOL-v1/eval15')
+        self.apath = os.path.join(dir_data, 'dataset/test')
         print(self.apath)
         self.dir_hr = os.path.join(self.apath, 'high')
         self.dir_lr = os.path.join(self.apath, 'low')
