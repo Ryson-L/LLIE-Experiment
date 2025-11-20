@@ -154,8 +154,8 @@ class Trainer():
             res_g3_s1, res_g3_s2, res_g3_s4, feat_g3_s1, feat_g3_s2, feat_g3_s4 = self.model.forward_1(lr, 3)
 
             'use seg_model'
-            with torch.amp.autocast(device_type='cuda', dtype=torch.float16):
-                seg_map, seg_orin, seg_fea = seg_model(res_g3_s1)
+            #with torch.amp.autocast(device_type='cuda', dtype=torch.float16):
+            seg_map, seg_orin, seg_fea = seg_model(res_g3_s1)
                     
             phr1, phr2, phr4 = self.model.forward_2(lr, res_g3_s1, res_g3_s2, res_g3_s4, feat_g3_s1, feat_g3_s2,
                                                     feat_g3_s4,seg_orin, seg_fea)
@@ -165,8 +165,8 @@ class Trainer():
             hr1 = hr
 
             'use seg_model'
-            with torch.amp.autocast(device_type='cuda', dtype=torch.float16):
-                seg_map, seg_orin, seg_fea = seg_model(phr1)
+            #with torch.amp.autocast(device_type='cuda', dtype=torch.float16):
+            seg_map, seg_orin, seg_fea = seg_model(phr1)
 
             if self.adv:
                 loss_D = calculate_loss_D(model_D, hr1, phr1, seg_map)
@@ -204,7 +204,7 @@ class Trainer():
             timer_model.hold()
 
 
-            if batch % 12 == 0:
+            if batch % 100 == 0:
                 if self.adv:
                     self.ckp.write_log('[{}/{}]\t{}\t{}\t{}\tD: {}\tG: {}\t{:.1f}+{:.1f}s'.format(
                         (batch + 1) * self.args.batch_size,
