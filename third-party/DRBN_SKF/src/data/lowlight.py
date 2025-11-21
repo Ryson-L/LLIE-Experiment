@@ -10,7 +10,7 @@ class LowLight(srdata.SRData):
 
     def _set_filesystem(self, dir_data):
         super(LowLight, self)._set_filesystem(dir_data)
-        self.apath = '/dev/shm/dataset_ram/LOL-v1/our485'
+        self.apath = '/root/LLIE-Experiment/third-party/DRBN_SKF/dataset/dataset/train'
         print(self.apath)
         self.dir_hr   = os.path.join(self.apath, 'high')
         self.dir_lr   = os.path.join(self.apath, 'low')

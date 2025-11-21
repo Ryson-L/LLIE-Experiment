@@ -98,15 +98,39 @@ class SRData(data.Dataset):
 
     # Below functions as used to prepare images
     def _scan(self):
-        names_hr = sorted(
-            glob.glob(os.path.join(self.dir_hr, '*' + self.ext[0]))
-        )
+        # 1. 读取所有文件路径
+        names_hr = sorted(glob.glob(os.path.join(self.dir_hr, '*' + self.ext[0])))
+        names_lr_all = sorted(glob.glob(os.path.join(self.dir_lr, '*' + self.ext[1])))
 
-        names_lr = sorted(
-            glob.glob(os.path.join(self.dir_lr, '*' + self.ext[1]))
-        )
+        # 2. 建立 Low 文件夹的索引字典 {文件名: 完整路径}
+        # 这样我们就可以通过名字瞬间找到路径
+        lr_map = {}
+        for lr_path in names_lr_all:
+            # 提取文件名，例如 'C:/.../low/1.png' -> '1.png'
+            file_name = os.path.basename(lr_path)
+            lr_map[file_name] = lr_path
 
-        return names_hr, names_lr
+        # 3. 重新构建一一对应的列表
+        names_hr_filtered = []
+        names_lr_filtered = []
+
+        print(f"Matching images for {self.name}...")
+        
+        for hr_path in names_hr:
+            file_name = os.path.basename(hr_path)
+            
+            # 关键逻辑：只有当 Low 里也有这个名字时，才加入列表
+            if file_name in lr_map:
+                names_hr_filtered.append(hr_path)
+                names_lr_filtered.append(lr_map[file_name])
+            else:
+                # 如果是 eval15，这里其实是正常的，不需要报警，但如果是 train 就不对
+                pass 
+
+        print(f"Final dataset size: {len(names_hr_filtered)} pairs.")
+        
+        # 确保两个列表长度一致且顺序一致
+        return names_hr_filtered, names_lr_filtered
 
     def _set_filesystem(self, dir_data):
         self.apath = os.path.join(dir_data, self.name)

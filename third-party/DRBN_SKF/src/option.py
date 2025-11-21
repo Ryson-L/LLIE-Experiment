@@ -19,7 +19,7 @@ parser.add_argument('--seed', type=int, default=1,
                     help='random seed')
 
 # Data specifications
-parser.add_argument('--dir_data', type=str, default='/dev/shm/dataset_ram',
+parser.add_argument('--dir_data', type=str, default='/root/LLIE-Experiment/third-party/DRBN_SKF/dataset',
                     help='dataset directory')
 parser.add_argument('--dir_demo', type=str, default='../test',
                     help='demo image directory')
@@ -31,7 +31,7 @@ parser.add_argument('--data_range', type=str, default='1-800/1-200',
                     help='train/test data range')
 parser.add_argument('--ext', type=str, default='sep',
                     help='dataset file extension')
-parser.add_argument('--scale', type=str, default='1',
+parser.add_argument('--scale', type=str, default='4',
                     help='super resolution scale')
 parser.add_argument('--patch_size', type=int, default=256,
                     help='output patch size')
@@ -89,7 +89,7 @@ parser.add_argument('--test_every', type=int, default=1000,
                     help='do test per every N batches')
 parser.add_argument('--epochs', type=int, default=150, # switched to 150
                     help='number of epochs to train')
-parser.add_argument('--batch_size', type=int, default=4,
+parser.add_argument('--batch_size', type=int, default=16,
                     help='input batch size for training')
 parser.add_argument('--split_batch', type=int, default=1,
                     help='split the batch into smaller chunks')

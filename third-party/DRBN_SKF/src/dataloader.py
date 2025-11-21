@@ -23,7 +23,7 @@ class MSDataLoader(DataLoader):
         sampler=None,
         batch_sampler=None,
         collate_fn=_utils.collate.default_collate,
-        pin_memory=False,
+        pin_memory=True,
         drop_last=False,
         timeout=0,
         worker_init_fn=None,

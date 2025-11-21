@@ -204,7 +204,7 @@ class Trainer():
             timer_model.hold()
 
 
-            if batch % 100 == 0:
+            if batch % 24 == 0:
                 if self.adv:
                     self.ckp.write_log('[{}/{}]\t{}\t{}\t{}\tD: {}\tG: {}\t{:.1f}+{:.1f}s'.format(
                         (batch + 1) * self.args.batch_size,
