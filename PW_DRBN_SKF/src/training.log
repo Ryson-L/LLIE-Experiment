@@ -1,0 +1,44 @@
+nohup: ignoring input
+/root/LLIE-Experiment/PW_DRBN_SKF/src/trainer_seg_hist_fuse.py:102: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  checkpoint = torch.load(baseline_path)
+/home/vipuser/miniconda3/lib/python3.12/site-packages/torch/optim/lr_scheduler.py:224: UserWarning: Detected call of `lr_scheduler.step()` before `optimizer.step()`. In PyTorch 1.1.0 and later, you should call them in the opposite order: `optimizer.step()` before `lr_scheduler.step()`.  Failure to do this will result in PyTorch skipping the first value of the learning rate schedule. See more details at https://pytorch.org/docs/stable/optim.html#how-to-adjust-learning-rate
+  warnings.warn(
+/home/vipuser/miniconda3/lib/python3.12/site-packages/torch/optim/lr_scheduler.py:536: UserWarning: To get the last learning rate computed by the scheduler, please use `get_last_lr()`.
+  _warn_get_lr_called_within_step(self)
+/home/vipuser/miniconda3/lib/python3.12/site-packages/torch/nn/_reduction.py:51: UserWarning: size_average and reduce args will be deprecated, please use reduction='mean' instead.
+  warnings.warn(warning.format(ret))
+/root/LLIE-Experiment/PW_DRBN_SKF/src/hrseg/hrseg_model.py:31: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  pretrained_dict = torch.load('./hrseg/hrnet_w48_pascal_context_cls59_480x480.pth')
+DataLoader workers: 6
+/root/LLIE-Experiment/PW_DRBN_SKF/dataset/train
+Matching images for LowLight...
+Final dataset size: 185 pairs.
+/root/LLIE-Experiment/PW_DRBN_SKF/dataset/test
+Matching images for LowLightTest...
+Final dataset size: 15 pairs.
+Making model...
+Preparing loss function:
+1.000 * MSE
+Loading Baseline model from ./baseline_model.pt...
+>>> SUCCESS: Processed 381 keys from checkpoint.
+>>> Warning: 381 keys missing (e.g., ['model.recur1.SFENet1.weight', 'model.recur1.SFENet1.bias', 'model.recur1.SFENet2.weight']).
+>>> Warning: 381 unexpected keys.
+[Epoch 2]	Learning rate: 1.00e-5
+HRNet load
+[16/555]	1.0246020555496216	-0.001038823975250125	6.868225318612531e-05	1.0	D: 0.24902118742465973	G: 0.25572171807289124	6.1+4.1s
+[400/555]	0.866432249546051	-0.15944978594779968	7.260536949615926e-05	1.0	D: 0.25085097551345825	G: 0.2580944895744324	61.9+1.0s
+
+Evaluation:
+HRNet load
+  0%|                                                    | 0/15 [00:00<?, ?it/s]  7%|██▉                                         | 1/15 [00:01<00:14,  1.00s/it] 13%|█████▊                                      | 2/15 [00:01<00:06,  2.00it/s] 20%|████████▊                                   | 3/15 [00:01<00:04,  2.99it/s] 27%|███████████▋                                | 4/15 [00:01<00:02,  3.95it/s] 33%|██████████████▋                             | 5/15 [00:01<00:02,  4.73it/s] 40%|█████████████████▌                          | 6/15 [00:01<00:01,  5.39it/s] 47%|████████████████████▌                       | 7/15 [00:01<00:01,  5.98it/s] 53%|███████████████████████▍                    | 8/15 [00:01<00:01,  6.47it/s] 60%|██████████████████████████▍                 | 9/15 [00:02<00:00,  6.74it/s] 67%|████████████████████████████▋              | 10/15 [00:02<00:00,  6.96it/s] 73%|███████████████████████████████▌           | 11/15 [00:02<00:00,  7.16it/s] 80%|██████████████████████████████████▍        | 12/15 [00:02<00:00,  7.30it/s] 87%|█████████████████████████████████████▎     | 13/15 [00:02<00:00,  7.39it/s] 93%|████████████████████████████████████████▏  | 14/15 [00:02<00:00,  7.46it/s]100%|███████████████████████████████████████████| 15/15 [00:02<00:00,  7.49it/s]100%|███████████████████████████████████████████| 15/15 [00:02<00:00,  5.22it/s]
+[LowLightTest x4]	PSNR: 7.330 (Best: 7.330 @epoch 1)
+Total time: 2.88s
+
+[Epoch 3]	Learning rate: 1.00e-5
+HRNet load
+[16/555]	0.8426157832145691	-0.18937113881111145	7.184782589320093e-05	1.0	D: 0.2549227178096771	G: 0.31915083527565	2.5+3.4s
+[400/555]	0.6526870727539062	-0.3795222043991089	7.522403757320717e-05	1.0	D: 0.2563078999519348	G: 0.32134032249450684	61.0+1.0s
+
+Evaluation:
+HRNet load
+  0%|                                                    | 0/15 [00:00<?, ?it/s]  7%|██▉                                         | 1/15 [00:00<00:07,  1.95it/s] 13%|█████▊                                      | 2/15 [00:00<00:03,  3.36it/s] 20%|████████▊                                   | 3/15 [00:00<00:02,  4.04it/s] 27%|███████████▋                                | 4/15 [00:00<00:02,  4.96it/s] 33%|██████████████▋                             | 5/15 [00:01<00:01,  5.07it/s] 40%|█████████████████▌                          | 6/15 [00:01<00:01,  5.74it/s] 47%|████████████████████▌                       | 7/15 [00:01<00:01,  6.17it/s] 53%|███████████████████████▍                    | 8/15 [00:01<00:01,  6.54it/s] 60%|██████████████████████████▍                 | 9/15 [00:01<00:00,  6.83it/s] 67%|████████████████████████████▋              | 10/15 [00:01<00:00,  7.03it/s] 73%|███████████████████████████████▌           | 11/15 [00:01<00:00,  7.20it/s] 80%|██████████████████████████████████▍        | 12/15 [00:02<00:00,  7.26it/s] 87%|█████████████████████████████████████▎     | 13/15 [00:02<00:00,  7.34it/s] 93%|████████████████████████████████████████▏  | 14/15 [00:02<00:00,  7.40it/s]100%|███████████████████████████████████████████| 15/15 [00:02<00:00,  7.45it/s]100%|███████████████████████████████████████████| 15/15 [00:02<00:00,  6.00it/s]
