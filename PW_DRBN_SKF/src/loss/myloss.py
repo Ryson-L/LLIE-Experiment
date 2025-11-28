@@ -7,7 +7,6 @@ from math import exp
 from torch import nn
 
 
-
 def gradient(input_tensor, direction):
     smooth_kernel_x = torch.FloatTensor([[0, 0], [-1, 1]]).view((1, 1, 2, 2)).cuda()
     smooth_kernel_y = torch.transpose(smooth_kernel_x, 2, 3)
@@ -222,13 +221,14 @@ class MaskedSSIMLoss(nn.Module):
 
     def forward(self, img1, img2, mask):
         """
-        计算人像区域的 SSIM 损失
+        计算人像区域的 SSIM 值 (注意：返回的是相似度，不是 Loss！)
         Args:
             img1 (Tensor): 生成图 (B, 3, H, W)
             img2 (Tensor): GT 图 (B, 3, H, W)
             mask (Tensor): 二值掩码 (B, 1, H, W), 1代表人像, 0代表背景
         Returns:
-            loss (Tensor): 1 - Masked_SSIM
+            val (Tensor): Mask 区域的平均 SSIM 值 (越大越好)。
+                          在 Trainer 中请使用 -loss 或者 1-loss 进行优化。
         """
         (_, channel, _, _) = img1.size()
 
@@ -256,7 +256,6 @@ class MaskedSSIMLoss(nn.Module):
         mu1_mu2 = mu1 * mu2
 
         # 2. 计算局部方差 (Variance) 和 协方差 (Covariance)
-        # sigma^2 = E[x^2] - (E[x])^2
         sigma1_sq = F.conv2d(img1 * img1, window, padding=window_size // 2, groups=channel) - mu1_sq
         sigma2_sq = F.conv2d(img2 * img2, window, padding=window_size // 2, groups=channel) - mu2_sq
         sigma12 = F.conv2d(img1 * img2, window, padding=window_size // 2, groups=channel) - mu1_mu2
@@ -266,25 +265,44 @@ class MaskedSSIMLoss(nn.Module):
         C2 = 0.03 ** 2
         
         # ssim_map: 每个像素点都有一个 SSIM 分数，范围 [-1, 1]
-        # 形状: (B, C, H, W)
         ssim_map = ((2 * mu1_mu2 + C1) * (2 * sigma12 + C2)) / ((mu1_sq + mu2_sq + C1) * (sigma1_sq + sigma2_sq + C2))
 
-        # ================= 关键修改区 =================
-        
         # 4. 掩码过滤 (Masking)
-        # 我们的 mask 通常是 (B, 1, H, W)，需要广播到 (B, 3, H, W) 才能相乘
-        # ssim_map * mask 会把背景区域（mask=0）的分数全部变成 0
         masked_ssim_map = ssim_map * mask 
         
         # 5. 计算有效像素数 (Valid Pixels)
-        # 分母不能是全图像素数，必须是人像区域的像素数
-        # 如果 mask 里全是 0 (没有检测到人)，加一个极小值 1e-6 防止除以零崩溃
         valid_pixels = torch.sum(mask) * channel + 1e-6
         
-        # 6. 计算 Mask 区域的平均 SSIM
+        # 6. 计算 Mask 区域的平均 SSIM (纯数值，不带 1-)
         mean_ssim = torch.sum(masked_ssim_map) / valid_pixels
         
-        # 7. 转为 Loss
-        # 因为 SSIM 越大越好 (接近1)，而 Loss 越小越好 (接近0)
-        # 所以 Loss = 1 - SSIM
+        # 返回正的 SSIM 值，统一接口
         return 1.0 - mean_ssim
+    
+
+class MaskedL1Loss(nn.Module):
+    def __init__(self):
+        super(MaskedL1Loss, self).__init__()
+
+    def forward(self, pred, target, mask):
+        """
+        pred: (N, C, H, W)
+        target: (N, C, H, W)
+        mask: (N, 1, H, W), {0,1}
+
+        return: mean L1 on pixels where mask=1
+        """
+        # 强制 mask 为 float
+        mask = mask.float()
+
+        # 避免 mask 区域为 0
+        valid = torch.sum(mask) + 1e-6
+
+        # L1
+        diff = torch.abs(pred - target)
+
+        # 应用 mask
+        masked_diff = diff * mask
+
+        # 返回 masked 区域的平均 L1
+        return torch.sum(masked_diff) / valid

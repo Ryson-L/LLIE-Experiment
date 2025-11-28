@@ -17,15 +17,14 @@ import torchvision
 from PIL import Image
 
 from hrseg.hrseg_model import create_hrnet
-from loss.myloss import hist_loss, MaskedSSIMLoss
+from loss.myloss import hist_loss, MaskedSSIMLoss, MaskedL1Loss
 
 import torch.optim as optim
 
 from model.D_Net import Discriminator as D_Net
 from model.D_Net import calculate_loss_D, calculate_loss_G
 
-
-
+from collections import OrderedDict
 
 
 def tensor_save_rgbimage(tensor, filename, cuda=False):
@@ -62,8 +61,6 @@ def vgg_loss(vgg, img, gt):
     mse = nn.MSELoss(size_average=True)
     img_vgg = vgg(img)
     gt_vgg = vgg(gt)
-
-    # return 0.4*mse(img_vgg[2], gt_vgg[2]) + 0.2*mse(img_vgg[3], gt_vgg[3])
     return mse(img_vgg[0], gt_vgg[0]) + 0.6 * mse(img_vgg[1], gt_vgg[1]) + 0.4 * mse(img_vgg[2], gt_vgg[2]) + 0.2 * mse(
         img_vgg[3], gt_vgg[3])
 
@@ -72,7 +69,6 @@ def vgg_init(vgg_loc):
     vgg_model = torchvision.models.vgg16(pretrained=False).cuda()
     vgg_model.load_state_dict(torch.load(vgg_loc))
     trainable(vgg_model, False)
-
     return vgg_model
 
 
@@ -92,6 +88,39 @@ class Trainer():
 
         self.model = my_model
         
+        # =========================================================
+        baseline_path = './baseline_model.pt'
+
+        if os.path.exists(baseline_path):
+            self.ckp.write_log(f'Loading Baseline model from {baseline_path}...')
+
+            try:
+                raw = torch.load(baseline_path, map_location='cpu')
+
+                # 如果 baseline 使用 {'state_dict': ...} 保存，则取 state_dict
+                if isinstance(raw, dict) and 'state_dict' in raw:
+                    state_dict = raw['state_dict']
+                else:
+                    state_dict = raw
+
+                fixed_state = {}
+
+                # 给所有 baseline key 自动添加 "model." 前缀，使其与当前模型对齐
+                for k, v in state_dict.items():
+                    new_key = k if k.startswith("model.") else ("model." + k)
+                    fixed_state[new_key] = v
+
+                # 尝试严格加载
+                self.model.load_state_dict(fixed_state, strict=True)
+
+                self.ckp.write_log(f'>>> SUCCESS: Baseline loaded ({len(fixed_state)} params).')
+
+            except Exception as e:
+                self.ckp.write_log(f'>>> Error loading baseline: {e}')
+        else:
+            self.ckp.write_log(f'>>> Warning: Baseline {baseline_path} not found. Training from scratch.')
+        # =========================================================
+            
         self.loss = my_loss
 
         "adv"
@@ -99,12 +128,6 @@ class Trainer():
 
         self.optimizer = utility.make_optimizer(args, self.model)
         self.scheduler = utility.make_scheduler(args, self.optimizer)
-
-        if self.args.load != '.':
-            self.optimizer.load_state_dict(
-                torch.load(os.path.join(ckp.dir, 'optimizer.pt'))
-            )
-            for _ in range(len(ckp.log)): self.scheduler.step()
 
         self.error_last = 1e8
 
@@ -125,11 +148,7 @@ class Trainer():
         criterion_ssim = pytorch_ssim.SSIM(window_size=11)
         criterion_mse = nn.MSELoss(size_average=True)
         
-        criterion_portrait = MaskedSSIMLoss().cuda()
-
-        #    vgg_model = vgg_init('./pretrained/vgg16-397923af.pth')
-        #    vgg = vgg_v2(vgg_model)
-        #    vgg.eval()
+        criterion_portrait = MaskedL1Loss().cuda()
 
         'define seg model'
         seg_model = create_hrnet().cuda()
@@ -153,11 +172,9 @@ class Trainer():
 
             [b, c, h, w] = hr.shape
                             
-            # phr1, phr2, phr4 = self.model(lr, 3)
             res_g3_s1, res_g3_s2, res_g3_s4, feat_g3_s1, feat_g3_s2, feat_g3_s4 = self.model.forward_1(lr, 3)
 
             'use seg_model'
-            #with torch.amp.autocast(device_type='cuda', dtype=torch.float16):
             seg_map, seg_orin, seg_fea = seg_model(res_g3_s1)
                     
             phr1, phr2, phr4 = self.model.forward_2(lr, res_g3_s1, res_g3_s2, res_g3_s4, feat_g3_s1, feat_g3_s2,
@@ -168,7 +185,6 @@ class Trainer():
             hr1 = hr
 
             'use seg_model'
-            #with torch.amp.autocast(device_type='cuda', dtype=torch.float16):
             seg_map, seg_orin, seg_fea = seg_model(phr1)
 
             if self.adv:
@@ -185,7 +201,7 @@ class Trainer():
                 mask_person = (torch.argmax(seg_map, dim=1, keepdim=True) == 36).float()
                 loss_portrait = criterion_portrait(phr1, hr1, mask_person)
 
-                full_loss = rect_loss + hist_loss_ + 0.1 * loss_G + 5 * loss_portrait
+                full_loss = rect_loss + hist_loss_ + 0.1 * loss_G + 10000000000000000000 * loss_portrait
                 self.optimizer.zero_grad()
                 full_loss.backward()
                 self.optimizer.step()
@@ -200,7 +216,7 @@ class Trainer():
                 mask_person = (torch.argmax(seg_map, dim=1, keepdim=True) == 36).float()
                 loss_portrait = criterion_portrait(phr1, hr1, mask_person)
                 
-                full_loss = rect_loss + hist_loss_ + 0.5 * loss_portrait
+                full_loss = rect_loss + hist_loss_ + 10000000000000000000 * loss_portrait
 
                 if full_loss.item() < self.args.skip_threshold * self.error_last:
                     full_loss.backward()
@@ -224,7 +240,6 @@ class Trainer():
                         loss_portrait.item(),
                         loss_D.item(),
                         loss_G.item(),
-                        # percept_loss.item(),
                         timer_model.release(),
                         timer_data.release()))
                 else:
@@ -234,13 +249,10 @@ class Trainer():
                         full_loss.item(),
                         rect_loss.item(),
                         hist_loss_.item(),
-                        # percept_loss.item(),
                         timer_model.release(),
                         timer_data.release()))
 
             timer_data.tic()
-
-        # print(rect_loss.item())
 
         self.loss.end_log(len(self.loader_train))
         self.error_last = self.loss.log[-1, -1]
@@ -276,7 +288,6 @@ class Trainer():
                     [b, c, h, w] = hr.shape
                     n_map = torch.zeros(b, c, h, w).cuda()
 
-                    # phr1, phr2, phr4 = self.model(lr, 3)
                     res_g3_s1, res_g3_s2, res_g3_s4, feat_g3_s1, feat_g3_s2, feat_g3_s4 = self.model.forward_1(lr, 3)
 
                     'use seg_model'
@@ -335,5 +346,3 @@ class Trainer():
         else:
             epoch = self.scheduler.last_epoch + 1
             return epoch >= self.args.epochs
-
-

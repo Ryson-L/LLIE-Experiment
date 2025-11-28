@@ -6,7 +6,7 @@ from skimage.metrics import structural_similarity as ssim
 
 # ================= 配置区域 =================
 # 1. 待评估的增强图路径 (Input)
-ENHANCED_DIR = '../experiment/test1/epoch10' 
+ENHANCED_DIR = '../experiment/test2/epoch18' 
 
 # 2. 地面真值 (GT) 路径 (Reference)
 GT_DIR = '../dataset/test/high'
