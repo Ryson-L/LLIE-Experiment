@@ -201,7 +201,7 @@ class Trainer():
                 mask_person = (torch.argmax(seg_map, dim=1, keepdim=True) == 36).float()
                 loss_portrait = criterion_portrait(phr1, hr1, mask_person)
 
-                full_loss = rect_loss + hist_loss_ + 0.1 * loss_G + 10000000000000000000 * loss_portrait
+                full_loss = rect_loss + hist_loss_ + 0.1 * loss_G + 1e3 * loss_portrait
                 self.optimizer.zero_grad()
                 full_loss.backward()
                 self.optimizer.step()
@@ -216,7 +216,7 @@ class Trainer():
                 mask_person = (torch.argmax(seg_map, dim=1, keepdim=True) == 36).float()
                 loss_portrait = criterion_portrait(phr1, hr1, mask_person)
                 
-                full_loss = rect_loss + hist_loss_ + 10000000000000000000 * loss_portrait
+                full_loss = rect_loss + hist_loss_ + 1e3 * loss_portrait
 
                 if full_loss.item() < self.args.skip_threshold * self.error_last:
                     full_loss.backward()

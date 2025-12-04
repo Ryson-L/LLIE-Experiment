@@ -1,0 +1,422 @@
+25-12-03 01:52:08.749 - INFO:   name: Portrait_SKF_weight1e18
+  use_tb_logger: True
+  model: video_base4_m
+  distortion: sr
+  scale: 1
+  gpu_ids: [0]
+  seg: True
+  datasets:[
+    train:[
+      name: indoor
+      mode: video_samesize_lol
+      interval_list: [1]
+      random_reverse: False
+      border_mode: False
+      dataroot_GT: ./Portrait_Dataset/train/high
+      dataroot_LQ: ./Portrait_Dataset/train/low
+      train_size: [512, 512]
+      cache_keys: None
+      cache_data: True
+      padding: new_info
+      N_frames: 5
+      use_shuffle: True
+      n_workers: 8
+      batch_size: 16
+      GT_size: 128
+      LQ_size: 128
+      use_flip: True
+      use_rot: True
+      color: RGB
+      phase: train
+      scale: 1
+      data_type: img
+    ]
+    val:[
+      name: REDS4
+      mode: video_samesize_lol
+      dataroot_GT: ./Portrait_Dataset/test/high
+      dataroot_LQ: ./Portrait_Dataset/test/low
+      cache_data: True
+      N_frames: 5
+      padding: new_info
+      train_size: [512, 512]
+      phase: val
+      scale: 1
+      data_type: img
+    ]
+  ]
+  network_G:[
+    which_model_G: low_light_transformer_seg
+    nf: 64
+    nframes: 5
+    groups: 8
+    front_RBs: 1
+    back_RBs: 1
+    predeblur: True
+    HR_in: True
+    w_TSA: True
+    scale: 1
+  ]
+  path:[
+    root: ./
+    pretrain_model_G: None
+    experiments_root: ./experiments/Portrait_SKF_weight1e18
+    models: ./experiments/Portrait_SKF_weight1e18/models
+    training_state: ./experiments/Portrait_SKF_weight1e18/training_state
+    log: ./experiments/Portrait_SKF_weight1e18
+    val_images: ./experiments/Portrait_SKF_weight1e18/val_images
+  ]
+  train:[
+    manual_seed: 3407
+    lr_G: 0.0001
+    lr_scheme: MultiStepLR
+    beta1: 0.9
+    beta2: 0.99
+    niter: 5250
+    ft_tsa_only: 0
+    warmup_iter: -1
+    lr_steps: [1750, 3500, 4500]
+    lr_gamma: 0.5
+    eta_min: 1e-07
+    pixel_criterion: cb
+    pixel_weight: 1.0
+    val_freq: 35
+    manual.resize960x512_seed: 0
+    use_portrait_loss: True
+    portrait_class_id: 36
+    portrait_loss_weight: 1e+18
+  ]
+  logger:[
+    print_freq: 35
+    save_checkpoint_freq: 5250.0
+  ]
+  is_train: True
+  dist: False
+
+25-12-03 01:52:08.812 - INFO: Random seed: 3407
+25-12-03 01:52:08.815 - INFO: Dataset [VideoSameSizeDataset - indoor] is created.
+25-12-03 01:52:08.815 - INFO: Number of train images: 185, iters: 12
+25-12-03 01:52:08.815 - INFO: Total epochs needed: 438 for iters 5,250
+25-12-03 01:52:08.815 - INFO: Dataset [VideoSameSizeDataset - REDS4] is created.
+25-12-03 01:52:08.815 - INFO: Number of val images in [REDS4]: 15
+25-12-03 01:52:09.218 - INFO: Network G structure: low_light_transformer_seg, with parameters: 39,449,509
+25-12-03 01:52:09.219 - INFO: Model [VideoBaseModel] is created.
+25-12-03 01:52:10.499 - INFO: Start training from epoch: 0, iter: 0
+25-12-03 01:52:19.811 - INFO: [epoch:  3, iter:      35, lr:(1.000e-04,)] l_pix: 1.1715e+05 
+25-12-03 01:52:27.727 - INFO: # Validation # PSNR: 1.5084e+01:----Best iter:        0 Best PSNR: -1.0000e+00
+25-12-03 01:52:27.728 - INFO: Saving best models
+25-12-03 01:52:36.131 - INFO: [epoch:  6, iter:      70, lr:(1.000e-04,)] l_pix: 1.0134e+05 l_hist: 1.2353e-02 
+25-12-03 01:52:41.860 - INFO: # Validation # PSNR: 1.6846e+01:----Best iter:       35 Best PSNR: 1.5084e+01
+25-12-03 01:52:41.861 - INFO: Saving best models
+25-12-03 01:52:50.425 - INFO: [epoch:  9, iter:     105, lr:(1.000e-04,)] l_pix: 7.6601e+04 l_hist: 1.1914e-02 
+25-12-03 01:52:56.173 - INFO: # Validation # PSNR: 1.8562e+01:----Best iter:       70 Best PSNR: 1.6846e+01
+25-12-03 01:52:56.174 - INFO: Saving best models
+25-12-03 01:53:03.407 - INFO: [epoch: 12, iter:     140, lr:(1.000e-04,)] l_pix: 8.0599e+04 l_hist: 1.1914e-02 
+25-12-03 01:53:09.102 - INFO: # Validation # PSNR: 1.8612e+01:----Best iter:      105 Best PSNR: 1.8562e+01
+25-12-03 01:53:09.104 - INFO: Saving best models
+25-12-03 01:53:17.737 - INFO: [epoch: 15, iter:     175, lr:(1.000e-04,)] l_pix: 6.4762e+04 l_hist: 1.1316e-02 
+25-12-03 01:53:23.415 - INFO: # Validation # PSNR: 1.9401e+01:----Best iter:      140 Best PSNR: 1.8612e+01
+25-12-03 01:53:23.416 - INFO: Saving best models
+25-12-03 01:53:32.289 - INFO: [epoch: 19, iter:     210, lr:(1.000e-04,)] l_pix: 7.9895e+04 l_hist: 1.0750e-02 
+25-12-03 01:53:37.971 - INFO: # Validation # PSNR: 1.9604e+01:----Best iter:      175 Best PSNR: 1.9401e+01
+25-12-03 01:53:37.973 - INFO: Saving best models
+25-12-03 01:53:45.420 - INFO: [epoch: 22, iter:     245, lr:(1.000e-04,)] l_pix: 6.2704e+04 l_hist: 1.0750e-02 
+25-12-03 01:53:51.110 - INFO: # Validation # PSNR: 1.9789e+01:----Best iter:      210 Best PSNR: 1.9604e+01
+25-12-03 01:53:51.111 - INFO: Saving best models
+25-12-03 01:53:59.500 - INFO: [epoch: 25, iter:     280, lr:(1.000e-04,)] l_pix: 6.2466e+04 l_hist: 9.8553e-03 
+25-12-03 01:54:05.144 - INFO: # Validation # PSNR: 1.9776e+01:----Best iter:      245 Best PSNR: 1.9789e+01
+25-12-03 01:54:13.323 - INFO: [epoch: 28, iter:     315, lr:(1.000e-04,)] l_pix: 7.1085e+04 l_hist: 1.1131e-02 
+25-12-03 01:54:19.093 - INFO: # Validation # PSNR: 1.9462e+01:----Best iter:      245 Best PSNR: 1.9789e+01
+25-12-03 01:54:27.458 - INFO: [epoch: 31, iter:     350, lr:(1.000e-04,)] l_pix: 5.9327e+04 l_hist: 9.5001e-03 
+25-12-03 01:54:33.242 - INFO: # Validation # PSNR: 2.0234e+01:----Best iter:      245 Best PSNR: 1.9789e+01
+25-12-03 01:54:33.243 - INFO: Saving best models
+25-12-03 01:54:40.477 - INFO: [epoch: 34, iter:     385, lr:(1.000e-04,)] l_pix: 6.8179e+04 l_hist: 9.5001e-03 
+25-12-03 01:54:46.131 - INFO: # Validation # PSNR: 1.9711e+01:----Best iter:      350 Best PSNR: 2.0234e+01
+25-12-03 01:54:54.702 - INFO: [epoch: 38, iter:     420, lr:(1.000e-04,)] l_pix: 5.7427e+04 l_hist: 1.1866e-02 
+25-12-03 01:55:00.337 - INFO: # Validation # PSNR: 2.0446e+01:----Best iter:      350 Best PSNR: 2.0234e+01
+25-12-03 01:55:00.338 - INFO: Saving best models
+25-12-03 01:55:08.852 - INFO: [epoch: 41, iter:     455, lr:(1.000e-04,)] l_pix: 6.6624e+04 l_hist: 1.1635e-02 
+25-12-03 01:55:14.665 - INFO: # Validation # PSNR: 2.0604e+01:----Best iter:      420 Best PSNR: 2.0446e+01
+25-12-03 01:55:14.667 - INFO: Saving best models
+25-12-03 01:55:22.081 - INFO: [epoch: 44, iter:     490, lr:(1.000e-04,)] l_pix: 5.1977e+04 l_hist: 1.1635e-02 
+25-12-03 01:55:27.786 - INFO: # Validation # PSNR: 2.0644e+01:----Best iter:      455 Best PSNR: 2.0604e+01
+25-12-03 01:55:27.787 - INFO: Saving best models
+25-12-03 01:55:36.503 - INFO: [epoch: 47, iter:     525, lr:(1.000e-04,)] l_pix: 5.6169e+04 l_hist: 1.1241e-02 
+25-12-03 01:55:42.238 - INFO: # Validation # PSNR: 2.0818e+01:----Best iter:      490 Best PSNR: 2.0644e+01
+25-12-03 01:55:42.239 - INFO: Saving best models
+25-12-03 01:55:50.964 - INFO: [epoch: 50, iter:     560, lr:(1.000e-04,)] l_pix: 5.5062e+04 l_hist: 1.0679e-02 
+25-12-03 01:55:56.619 - INFO: # Validation # PSNR: 2.0313e+01:----Best iter:      525 Best PSNR: 2.0818e+01
+25-12-03 01:56:04.168 - INFO: [epoch: 54, iter:     595, lr:(1.000e-04,)] l_pix: 7.9711e+04 l_hist: 1.0679e-02 
+25-12-03 01:56:09.959 - INFO: # Validation # PSNR: 1.9870e+01:----Best iter:      525 Best PSNR: 2.0818e+01
+25-12-03 01:56:18.063 - INFO: [epoch: 57, iter:     630, lr:(1.000e-04,)] l_pix: 5.7352e+04 l_hist: 1.0448e-02 
+25-12-03 01:56:23.847 - INFO: # Validation # PSNR: 2.0999e+01:----Best iter:      525 Best PSNR: 2.0818e+01
+25-12-03 01:56:23.848 - INFO: Saving best models
+25-12-03 01:56:32.469 - INFO: [epoch: 60, iter:     665, lr:(1.000e-04,)] l_pix: 4.2855e+04 l_hist: 9.2921e-03 
+25-12-03 01:56:38.335 - INFO: # Validation # PSNR: 2.0879e+01:----Best iter:      630 Best PSNR: 2.0999e+01
+25-12-03 01:56:46.591 - INFO: [epoch: 63, iter:     700, lr:(1.000e-04,)] l_pix: 6.1705e+04 l_hist: 9.8764e-03 
+25-12-03 01:56:52.355 - INFO: # Validation # PSNR: 2.0704e+01:----Best iter:      630 Best PSNR: 2.0999e+01
+25-12-03 01:56:59.306 - INFO: [epoch: 66, iter:     735, lr:(1.000e-04,)] l_pix: 5.1245e+04 l_hist: 9.8764e-03 
+25-12-03 01:57:05.089 - INFO: # Validation # PSNR: 2.0664e+01:----Best iter:      630 Best PSNR: 2.0999e+01
+25-12-03 01:57:13.296 - INFO: [epoch: 69, iter:     770, lr:(1.000e-04,)] l_pix: 5.7252e+04 l_hist: 9.1185e-03 
+25-12-03 01:57:19.079 - INFO: # Validation # PSNR: 2.1050e+01:----Best iter:      630 Best PSNR: 2.0999e+01
+25-12-03 01:57:19.080 - INFO: Saving best models
+25-12-03 01:57:28.130 - INFO: [epoch: 73, iter:     805, lr:(1.000e-04,)] l_pix: 6.3761e+04 l_hist: 1.0770e-02 
+25-12-03 01:57:33.835 - INFO: # Validation # PSNR: 2.0717e+01:----Best iter:      770 Best PSNR: 2.1050e+01
+25-12-03 01:57:40.657 - INFO: [epoch: 76, iter:     840, lr:(1.000e-04,)] l_pix: 6.7791e+04 l_hist: 1.0770e-02 
+25-12-03 01:57:46.441 - INFO: # Validation # PSNR: 2.1202e+01:----Best iter:      770 Best PSNR: 2.1050e+01
+25-12-03 01:57:46.443 - INFO: Saving best models
+25-12-03 01:57:55.064 - INFO: [epoch: 79, iter:     875, lr:(1.000e-04,)] l_pix: 7.3271e+04 l_hist: 1.3306e-02 
+25-12-03 01:58:00.839 - INFO: # Validation # PSNR: 2.1475e+01:----Best iter:      840 Best PSNR: 2.1202e+01
+25-12-03 01:58:00.840 - INFO: Saving best models
+25-12-03 01:58:09.432 - INFO: [epoch: 82, iter:     910, lr:(1.000e-04,)] l_pix: 4.8943e+04 l_hist: 1.0425e-02 
+25-12-03 01:58:15.248 - INFO: # Validation # PSNR: 2.1473e+01:----Best iter:      875 Best PSNR: 2.1475e+01
+25-12-03 01:58:22.337 - INFO: [epoch: 85, iter:     945, lr:(1.000e-04,)] l_pix: 6.1242e+04 l_hist: 1.0425e-02 
+25-12-03 01:58:28.104 - INFO: # Validation # PSNR: 2.1377e+01:----Best iter:      875 Best PSNR: 2.1475e+01
+25-12-03 01:58:37.196 - INFO: [epoch: 89, iter:     980, lr:(1.000e-04,)] l_pix: 6.4228e+04 l_hist: 9.9006e-03 
+25-12-03 01:58:43.007 - INFO: # Validation # PSNR: 2.1133e+01:----Best iter:      875 Best PSNR: 2.1475e+01
+25-12-03 01:58:51.161 - INFO: [epoch: 92, iter:   1,015, lr:(1.000e-04,)] l_pix: 4.8448e+04 l_hist: 1.0439e-02 
+25-12-03 01:58:56.838 - INFO: # Validation # PSNR: 2.1404e+01:----Best iter:      875 Best PSNR: 2.1475e+01
+25-12-03 01:59:04.925 - INFO: [epoch: 95, iter:   1,050, lr:(1.000e-04,)] l_pix: 5.7080e+04 l_hist: 9.8293e-03 
+25-12-03 01:59:10.603 - INFO: # Validation # PSNR: 2.1304e+01:----Best iter:      875 Best PSNR: 2.1475e+01
+25-12-03 01:59:17.794 - INFO: [epoch: 98, iter:   1,085, lr:(1.000e-04,)] l_pix: 6.3681e+04 l_hist: 9.8293e-03 
+25-12-03 01:59:23.384 - INFO: # Validation # PSNR: 2.0985e+01:----Best iter:      875 Best PSNR: 2.1475e+01
+25-12-03 01:59:31.574 - INFO: [epoch:101, iter:   1,120, lr:(1.000e-04,)] l_pix: 5.3305e+04 l_hist: 1.0411e-02 
+25-12-03 01:59:37.244 - INFO: # Validation # PSNR: 2.1423e+01:----Best iter:      875 Best PSNR: 2.1475e+01
+25-12-03 01:59:45.545 - INFO: [epoch:104, iter:   1,155, lr:(1.000e-04,)] l_pix: 4.4840e+04 l_hist: 8.2375e-03 
+25-12-03 01:59:51.190 - INFO: # Validation # PSNR: 2.1602e+01:----Best iter:      875 Best PSNR: 2.1475e+01
+25-12-03 01:59:51.191 - INFO: Saving best models
+25-12-03 01:59:59.182 - INFO: [epoch:108, iter:   1,190, lr:(1.000e-04,)] l_pix: 5.5822e+04 l_hist: 8.2375e-03 
+25-12-03 02:00:04.839 - INFO: # Validation # PSNR: 2.0874e+01:----Best iter:    1,155 Best PSNR: 2.1602e+01
+25-12-03 02:00:13.055 - INFO: [epoch:111, iter:   1,225, lr:(1.000e-04,)] l_pix: 5.7363e+04 l_hist: 1.1040e-02 
+25-12-03 02:00:18.738 - INFO: # Validation # PSNR: 2.1739e+01:----Best iter:    1,155 Best PSNR: 2.1602e+01
+25-12-03 02:00:18.739 - INFO: Saving best models
+25-12-03 02:00:27.395 - INFO: [epoch:114, iter:   1,260, lr:(1.000e-04,)] l_pix: 5.7953e+04 l_hist: 8.2251e-03 
+25-12-03 02:00:33.166 - INFO: # Validation # PSNR: 2.1225e+01:----Best iter:    1,225 Best PSNR: 2.1739e+01
+25-12-03 02:00:40.294 - INFO: [epoch:117, iter:   1,295, lr:(1.000e-04,)] l_pix: 6.0411e+04 l_hist: 8.2251e-03 
+25-12-03 02:00:46.028 - INFO: # Validation # PSNR: 2.1652e+01:----Best iter:    1,225 Best PSNR: 2.1739e+01
+25-12-03 02:00:54.374 - INFO: [epoch:120, iter:   1,330, lr:(1.000e-04,)] l_pix: 5.6178e+04 l_hist: 9.0588e-03 
+25-12-03 02:01:00.212 - INFO: # Validation # PSNR: 2.1521e+01:----Best iter:    1,225 Best PSNR: 2.1739e+01
+25-12-03 02:01:08.984 - INFO: [epoch:124, iter:   1,365, lr:(1.000e-04,)] l_pix: 4.6729e+04 l_hist: 1.0005e-02 
+25-12-03 02:01:14.716 - INFO: # Validation # PSNR: 2.1504e+01:----Best iter:    1,225 Best PSNR: 2.1739e+01
+25-12-03 02:01:22.853 - INFO: [epoch:127, iter:   1,400, lr:(1.000e-04,)] l_pix: 4.6274e+04 l_hist: 8.7026e-03 
+25-12-03 02:01:28.603 - INFO: # Validation # PSNR: 2.1878e+01:----Best iter:    1,225 Best PSNR: 2.1739e+01
+25-12-03 02:01:28.604 - INFO: Saving best models
+25-12-03 02:01:36.021 - INFO: [epoch:130, iter:   1,435, lr:(1.000e-04,)] l_pix: 4.7051e+04 l_hist: 8.7026e-03 
+25-12-03 02:01:41.673 - INFO: # Validation # PSNR: 2.1619e+01:----Best iter:    1,400 Best PSNR: 2.1878e+01
+25-12-03 02:01:49.912 - INFO: [epoch:133, iter:   1,470, lr:(1.000e-04,)] l_pix: 5.8333e+04 l_hist: 1.0581e-02 
+25-12-03 02:01:55.626 - INFO: # Validation # PSNR: 2.1577e+01:----Best iter:    1,400 Best PSNR: 2.1878e+01
+25-12-03 02:02:03.745 - INFO: [epoch:136, iter:   1,505, lr:(1.000e-04,)] l_pix: 4.9680e+04 l_hist: 1.0287e-02 
+25-12-03 02:02:09.438 - INFO: # Validation # PSNR: 2.2030e+01:----Best iter:    1,400 Best PSNR: 2.1878e+01
+25-12-03 02:02:09.440 - INFO: Saving best models
+25-12-03 02:02:16.819 - INFO: [epoch:139, iter:   1,540, lr:(1.000e-04,)] l_pix: 5.6716e+04 l_hist: 1.0287e-02 
+25-12-03 02:02:22.544 - INFO: # Validation # PSNR: 2.2283e+01:----Best iter:    1,505 Best PSNR: 2.2030e+01
+25-12-03 02:02:22.545 - INFO: Saving best models
+25-12-03 02:02:31.740 - INFO: [epoch:143, iter:   1,575, lr:(1.000e-04,)] l_pix: 6.5620e+04 l_hist: 9.5148e-03 
+25-12-03 02:02:37.570 - INFO: # Validation # PSNR: 2.1155e+01:----Best iter:    1,540 Best PSNR: 2.2283e+01
+25-12-03 02:02:45.752 - INFO: [epoch:146, iter:   1,610, lr:(1.000e-04,)] l_pix: 5.7171e+04 l_hist: 8.9546e-03 
+25-12-03 02:02:51.432 - INFO: # Validation # PSNR: 2.2109e+01:----Best iter:    1,540 Best PSNR: 2.2283e+01
+25-12-03 02:02:58.304 - INFO: [epoch:149, iter:   1,645, lr:(1.000e-04,)] l_pix: 5.2398e+04 l_hist: 8.9546e-03 
+25-12-03 02:03:03.899 - INFO: # Validation # PSNR: 2.1942e+01:----Best iter:    1,540 Best PSNR: 2.2283e+01
+25-12-03 02:03:12.014 - INFO: [epoch:152, iter:   1,680, lr:(1.000e-04,)] l_pix: 4.1923e+04 l_hist: 7.2217e-03 
+25-12-03 02:03:17.753 - INFO: # Validation # PSNR: 2.2015e+01:----Best iter:    1,540 Best PSNR: 2.2283e+01
+25-12-03 02:03:25.948 - INFO: [epoch:155, iter:   1,715, lr:(1.000e-04,)] l_pix: 5.3309e+04 l_hist: 1.2587e-02 
+25-12-03 02:03:31.626 - INFO: # Validation # PSNR: 2.2101e+01:----Best iter:    1,540 Best PSNR: 2.2283e+01
+25-12-03 02:03:40.343 - INFO: [epoch:159, iter:   1,750, lr:(5.000e-05,)] l_pix: 5.6708e+04 l_hist: 1.0095e-02 
+25-12-03 02:03:46.128 - INFO: # Validation # PSNR: 2.2346e+01:----Best iter:    1,540 Best PSNR: 2.2283e+01
+25-12-03 02:03:46.129 - INFO: Saving best models
+25-12-03 02:03:53.592 - INFO: [epoch:162, iter:   1,785, lr:(5.000e-05,)] l_pix: 5.0542e+04 l_hist: 1.0095e-02 
+25-12-03 02:03:59.269 - INFO: # Validation # PSNR: 2.2450e+01:----Best iter:    1,750 Best PSNR: 2.2346e+01
+25-12-03 02:03:59.270 - INFO: Saving best models
+25-12-03 02:04:08.002 - INFO: [epoch:165, iter:   1,820, lr:(5.000e-05,)] l_pix: 5.2806e+04 l_hist: 9.0980e-03 
+25-12-03 02:04:13.667 - INFO: # Validation # PSNR: 2.2048e+01:----Best iter:    1,785 Best PSNR: 2.2450e+01
+25-12-03 02:04:22.003 - INFO: [epoch:168, iter:   1,855, lr:(5.000e-05,)] l_pix: 5.9483e+04 l_hist: 9.1579e-03 
+25-12-03 02:04:27.638 - INFO: # Validation # PSNR: 2.2183e+01:----Best iter:    1,785 Best PSNR: 2.2450e+01
+25-12-03 02:04:34.779 - INFO: [epoch:171, iter:   1,890, lr:(5.000e-05,)] l_pix: 3.9772e+04 l_hist: 9.1579e-03 
+25-12-03 02:04:40.376 - INFO: # Validation # PSNR: 2.2131e+01:----Best iter:    1,785 Best PSNR: 2.2450e+01
+25-12-03 02:04:48.516 - INFO: [epoch:174, iter:   1,925, lr:(5.000e-05,)] l_pix: 4.0307e+04 l_hist: 1.0724e-02 
+25-12-03 02:04:54.156 - INFO: # Validation # PSNR: 2.2274e+01:----Best iter:    1,785 Best PSNR: 2.2450e+01
+25-12-03 02:05:03.040 - INFO: [epoch:178, iter:   1,960, lr:(5.000e-05,)] l_pix: 4.6720e+04 l_hist: 8.2774e-03 
+25-12-03 02:05:08.909 - INFO: # Validation # PSNR: 2.2381e+01:----Best iter:    1,785 Best PSNR: 2.2450e+01
+25-12-03 02:05:15.958 - INFO: [epoch:181, iter:   1,995, lr:(5.000e-05,)] l_pix: 5.2015e+04 l_hist: 8.2774e-03 
+25-12-03 02:05:21.708 - INFO: # Validation # PSNR: 2.2364e+01:----Best iter:    1,785 Best PSNR: 2.2450e+01
+25-12-03 02:05:29.755 - INFO: [epoch:184, iter:   2,030, lr:(5.000e-05,)] l_pix: 4.5642e+04 l_hist: 8.7934e-03 
+25-12-03 02:05:35.460 - INFO: # Validation # PSNR: 2.2308e+01:----Best iter:    1,785 Best PSNR: 2.2450e+01
+25-12-03 02:05:43.683 - INFO: [epoch:187, iter:   2,065, lr:(5.000e-05,)] l_pix: 3.4826e+04 l_hist: 7.1376e-03 
+25-12-03 02:05:49.423 - INFO: # Validation # PSNR: 2.2195e+01:----Best iter:    1,785 Best PSNR: 2.2450e+01
+25-12-03 02:05:58.093 - INFO: [epoch:190, iter:   2,100, lr:(5.000e-05,)] l_pix: 5.7235e+04 l_hist: 1.0938e-02 
+25-12-03 02:06:03.770 - INFO: # Validation # PSNR: 2.2295e+01:----Best iter:    1,785 Best PSNR: 2.2450e+01
+25-12-03 02:06:11.407 - INFO: [epoch:194, iter:   2,135, lr:(5.000e-05,)] l_pix: 3.8220e+04 l_hist: 1.0938e-02 
+25-12-03 02:06:17.040 - INFO: # Validation # PSNR: 2.2295e+01:----Best iter:    1,785 Best PSNR: 2.2450e+01
+25-12-03 02:06:25.230 - INFO: [epoch:197, iter:   2,170, lr:(5.000e-05,)] l_pix: 4.4599e+04 l_hist: 8.9144e-03 
+25-12-03 02:06:30.906 - INFO: # Validation # PSNR: 2.2530e+01:----Best iter:    1,785 Best PSNR: 2.2450e+01
+25-12-03 02:06:30.907 - INFO: Saving best models
+25-12-03 02:06:39.427 - INFO: [epoch:200, iter:   2,205, lr:(5.000e-05,)] l_pix: 4.5063e+04 l_hist: 1.1425e-02 
+25-12-03 02:06:45.123 - INFO: # Validation # PSNR: 2.2331e+01:----Best iter:    2,170 Best PSNR: 2.2530e+01
+25-12-03 02:06:52.026 - INFO: [epoch:203, iter:   2,240, lr:(5.000e-05,)] l_pix: 3.7198e+04 l_hist: 1.1425e-02 
+25-12-03 02:06:57.839 - INFO: # Validation # PSNR: 2.2466e+01:----Best iter:    2,170 Best PSNR: 2.2530e+01
+25-12-03 02:07:06.007 - INFO: [epoch:206, iter:   2,275, lr:(5.000e-05,)] l_pix: 4.8840e+04 l_hist: 1.0007e-02 
+25-12-03 02:07:11.710 - INFO: # Validation # PSNR: 2.2618e+01:----Best iter:    2,170 Best PSNR: 2.2530e+01
+25-12-03 02:07:11.712 - INFO: Saving best models
+25-12-03 02:07:20.382 - INFO: [epoch:209, iter:   2,310, lr:(5.000e-05,)] l_pix: 5.6674e+04 l_hist: 8.6128e-03 
+25-12-03 02:07:26.151 - INFO: # Validation # PSNR: 2.2614e+01:----Best iter:    2,275 Best PSNR: 2.2618e+01
+25-12-03 02:07:33.516 - INFO: [epoch:213, iter:   2,345, lr:(5.000e-05,)] l_pix: 6.3447e+04 l_hist: 8.6128e-03 
+25-12-03 02:07:39.204 - INFO: # Validation # PSNR: 2.2680e+01:----Best iter:    2,275 Best PSNR: 2.2618e+01
+25-12-03 02:07:39.206 - INFO: Saving best models
+25-12-03 02:07:47.902 - INFO: [epoch:216, iter:   2,380, lr:(5.000e-05,)] l_pix: 6.9720e+04 l_hist: 9.4295e-03 
+25-12-03 02:07:53.620 - INFO: # Validation # PSNR: 2.2152e+01:----Best iter:    2,345 Best PSNR: 2.2680e+01
+25-12-03 02:08:02.013 - INFO: [epoch:219, iter:   2,415, lr:(5.000e-05,)] l_pix: 5.4741e+04 l_hist: 8.5190e-03 
+25-12-03 02:08:07.889 - INFO: # Validation # PSNR: 2.2672e+01:----Best iter:    2,345 Best PSNR: 2.2680e+01
+25-12-03 02:08:16.200 - INFO: [epoch:222, iter:   2,450, lr:(5.000e-05,)] l_pix: 5.2863e+04 l_hist: 9.8094e-03 
+25-12-03 02:08:21.999 - INFO: # Validation # PSNR: 2.2593e+01:----Best iter:    2,345 Best PSNR: 2.2680e+01
+25-12-03 02:08:29.160 - INFO: [epoch:225, iter:   2,485, lr:(5.000e-05,)] l_pix: 3.9474e+04 l_hist: 9.8094e-03 
+25-12-03 02:08:34.885 - INFO: # Validation # PSNR: 2.2670e+01:----Best iter:    2,345 Best PSNR: 2.2680e+01
+25-12-03 02:08:43.715 - INFO: [epoch:229, iter:   2,520, lr:(5.000e-05,)] l_pix: 4.1207e+04 l_hist: 8.9355e-03 
+25-12-03 02:08:49.352 - INFO: # Validation # PSNR: 2.2778e+01:----Best iter:    2,345 Best PSNR: 2.2680e+01
+25-12-03 02:08:49.354 - INFO: Saving best models
+25-12-03 02:08:58.055 - INFO: [epoch:232, iter:   2,555, lr:(5.000e-05,)] l_pix: 5.0235e+04 l_hist: 7.2282e-03 
+25-12-03 02:09:03.925 - INFO: # Validation # PSNR: 2.2521e+01:----Best iter:    2,520 Best PSNR: 2.2778e+01
+25-12-03 02:09:11.191 - INFO: [epoch:235, iter:   2,590, lr:(5.000e-05,)] l_pix: 5.5933e+04 l_hist: 7.2282e-03 
+25-12-03 02:09:17.017 - INFO: # Validation # PSNR: 2.2378e+01:----Best iter:    2,520 Best PSNR: 2.2778e+01
+25-12-03 02:09:25.192 - INFO: [epoch:238, iter:   2,625, lr:(5.000e-05,)] l_pix: 3.9968e+04 l_hist: 9.6371e-03 
+25-12-03 02:09:30.969 - INFO: # Validation # PSNR: 2.2654e+01:----Best iter:    2,520 Best PSNR: 2.2778e+01
+25-12-03 02:09:39.188 - INFO: [epoch:241, iter:   2,660, lr:(5.000e-05,)] l_pix: 5.6490e+04 l_hist: 7.4365e-03 
+25-12-03 02:09:45.057 - INFO: # Validation # PSNR: 2.2619e+01:----Best iter:    2,520 Best PSNR: 2.2778e+01
+25-12-03 02:09:52.119 - INFO: [epoch:244, iter:   2,695, lr:(5.000e-05,)] l_pix: 3.8302e+04 l_hist: 7.4365e-03 
+25-12-03 02:09:57.905 - INFO: # Validation # PSNR: 2.2602e+01:----Best iter:    2,520 Best PSNR: 2.2778e+01
+25-12-03 02:10:06.763 - INFO: [epoch:248, iter:   2,730, lr:(5.000e-05,)] l_pix: 5.2850e+04 l_hist: 9.6441e-03 
+25-12-03 02:10:12.473 - INFO: # Validation # PSNR: 2.2625e+01:----Best iter:    2,520 Best PSNR: 2.2778e+01
+25-12-03 02:10:20.776 - INFO: [epoch:251, iter:   2,765, lr:(5.000e-05,)] l_pix: 4.3725e+04 l_hist: 9.5263e-03 
+25-12-03 02:10:26.536 - INFO: # Validation # PSNR: 2.2596e+01:----Best iter:    2,520 Best PSNR: 2.2778e+01
+25-12-03 02:10:34.663 - INFO: [epoch:254, iter:   2,800, lr:(5.000e-05,)] l_pix: 4.4099e+04 l_hist: 8.2861e-03 
+25-12-03 02:10:40.464 - INFO: # Validation # PSNR: 2.2564e+01:----Best iter:    2,520 Best PSNR: 2.2778e+01
+25-12-03 02:10:47.437 - INFO: [epoch:257, iter:   2,835, lr:(5.000e-05,)] l_pix: 4.5023e+04 l_hist: 8.2861e-03 
+25-12-03 02:10:53.158 - INFO: # Validation # PSNR: 2.2660e+01:----Best iter:    2,520 Best PSNR: 2.2778e+01
+25-12-03 02:11:01.264 - INFO: [epoch:260, iter:   2,870, lr:(5.000e-05,)] l_pix: 3.8021e+04 l_hist: 8.4635e-03 
+25-12-03 02:11:07.056 - INFO: # Validation # PSNR: 2.2627e+01:----Best iter:    2,520 Best PSNR: 2.2778e+01
+25-12-03 02:11:15.635 - INFO: [epoch:264, iter:   2,905, lr:(5.000e-05,)] l_pix: 4.1746e+04 l_hist: 9.6659e-03 
+25-12-03 02:11:21.336 - INFO: # Validation # PSNR: 2.2609e+01:----Best iter:    2,520 Best PSNR: 2.2778e+01
+25-12-03 02:11:28.227 - INFO: [epoch:267, iter:   2,940, lr:(5.000e-05,)] l_pix: 5.2186e+04 l_hist: 9.6659e-03 
+25-12-03 02:11:33.966 - INFO: # Validation # PSNR: 2.2568e+01:----Best iter:    2,520 Best PSNR: 2.2778e+01
+25-12-03 02:11:42.332 - INFO: [epoch:270, iter:   2,975, lr:(5.000e-05,)] l_pix: 4.5247e+04 l_hist: 9.2833e-03 
+25-12-03 02:11:48.013 - INFO: # Validation # PSNR: 2.2833e+01:----Best iter:    2,520 Best PSNR: 2.2778e+01
+25-12-03 02:11:48.014 - INFO: Saving best models
+25-12-03 02:11:56.583 - INFO: [epoch:273, iter:   3,010, lr:(5.000e-05,)] l_pix: 3.6109e+04 l_hist: 9.5006e-03 
+25-12-03 02:12:02.287 - INFO: # Validation # PSNR: 2.2711e+01:----Best iter:    2,975 Best PSNR: 2.2833e+01
+25-12-03 02:12:09.381 - INFO: [epoch:276, iter:   3,045, lr:(5.000e-05,)] l_pix: 5.5013e+04 l_hist: 9.5006e-03 
+25-12-03 02:12:15.027 - INFO: # Validation # PSNR: 2.2337e+01:----Best iter:    2,975 Best PSNR: 2.2833e+01
+25-12-03 02:12:23.358 - INFO: [epoch:279, iter:   3,080, lr:(5.000e-05,)] l_pix: 4.0130e+04 l_hist: 8.7131e-03 
+25-12-03 02:12:29.092 - INFO: # Validation # PSNR: 2.2853e+01:----Best iter:    2,975 Best PSNR: 2.2833e+01
+25-12-03 02:12:29.093 - INFO: Saving best models
+25-12-03 02:12:38.378 - INFO: [epoch:283, iter:   3,115, lr:(5.000e-05,)] l_pix: 3.7531e+04 l_hist: 6.7348e-03 
+25-12-03 02:12:44.191 - INFO: # Validation # PSNR: 2.2951e+01:----Best iter:    3,080 Best PSNR: 2.2853e+01
+25-12-03 02:12:44.193 - INFO: Saving best models
+25-12-03 02:12:52.799 - INFO: [epoch:286, iter:   3,150, lr:(5.000e-05,)] l_pix: 4.5744e+04 l_hist: 9.7018e-03 
+25-12-03 02:12:58.480 - INFO: # Validation # PSNR: 2.2572e+01:----Best iter:    3,115 Best PSNR: 2.2951e+01
+25-12-03 02:13:05.478 - INFO: [epoch:289, iter:   3,185, lr:(5.000e-05,)] l_pix: 4.7372e+04 l_hist: 9.7018e-03 
+25-12-03 02:13:11.297 - INFO: # Validation # PSNR: 2.2701e+01:----Best iter:    3,115 Best PSNR: 2.2951e+01
+25-12-03 02:13:19.580 - INFO: [epoch:292, iter:   3,220, lr:(5.000e-05,)] l_pix: 4.4286e+04 l_hist: 9.1212e-03 
+25-12-03 02:13:25.409 - INFO: # Validation # PSNR: 2.2510e+01:----Best iter:    3,115 Best PSNR: 2.2951e+01
+25-12-03 02:13:33.637 - INFO: [epoch:295, iter:   3,255, lr:(5.000e-05,)] l_pix: 5.8041e+04 l_hist: 9.3965e-03 
+25-12-03 02:13:39.422 - INFO: # Validation # PSNR: 2.2993e+01:----Best iter:    3,115 Best PSNR: 2.2951e+01
+25-12-03 02:13:39.424 - INFO: Saving best models
+25-12-03 02:13:47.591 - INFO: [epoch:299, iter:   3,290, lr:(5.000e-05,)] l_pix: 4.9167e+04 l_hist: 9.3965e-03 
+25-12-03 02:13:53.446 - INFO: # Validation # PSNR: 2.2789e+01:----Best iter:    3,255 Best PSNR: 2.2993e+01
+25-12-03 02:14:01.934 - INFO: [epoch:302, iter:   3,325, lr:(5.000e-05,)] l_pix: 4.4649e+04 l_hist: 1.1684e-02 
+25-12-03 02:14:07.705 - INFO: # Validation # PSNR: 2.2928e+01:----Best iter:    3,255 Best PSNR: 2.2993e+01
+25-12-03 02:14:15.971 - INFO: [epoch:305, iter:   3,360, lr:(5.000e-05,)] l_pix: 5.5587e+04 l_hist: 7.3741e-03 
+25-12-03 02:14:21.766 - INFO: # Validation # PSNR: 2.3009e+01:----Best iter:    3,255 Best PSNR: 2.2993e+01
+25-12-03 02:14:21.768 - INFO: Saving best models
+25-12-03 02:14:29.071 - INFO: [epoch:308, iter:   3,395, lr:(5.000e-05,)] l_pix: 5.2364e+04 l_hist: 7.3741e-03 
+25-12-03 02:14:34.846 - INFO: # Validation # PSNR: 2.2821e+01:----Best iter:    3,360 Best PSNR: 2.3009e+01
+25-12-03 02:14:43.164 - INFO: [epoch:311, iter:   3,430, lr:(5.000e-05,)] l_pix: 4.7204e+04 l_hist: 8.8680e-03 
+25-12-03 02:14:48.897 - INFO: # Validation # PSNR: 2.2902e+01:----Best iter:    3,360 Best PSNR: 2.3009e+01
+25-12-03 02:14:57.021 - INFO: [epoch:314, iter:   3,465, lr:(5.000e-05,)] l_pix: 4.5694e+04 l_hist: 8.7836e-03 
+25-12-03 02:15:02.804 - INFO: # Validation # PSNR: 2.2994e+01:----Best iter:    3,360 Best PSNR: 2.3009e+01
+25-12-03 02:15:11.603 - INFO: [epoch:318, iter:   3,500, lr:(2.500e-05,)] l_pix: 5.0189e+04 l_hist: 9.0840e-03 
+25-12-03 02:15:17.251 - INFO: # Validation # PSNR: 2.3052e+01:----Best iter:    3,360 Best PSNR: 2.3009e+01
+25-12-03 02:15:17.253 - INFO: Saving best models
+25-12-03 02:15:24.582 - INFO: [epoch:321, iter:   3,535, lr:(2.500e-05,)] l_pix: 5.0300e+04 l_hist: 9.0840e-03 
+25-12-03 02:15:30.242 - INFO: # Validation # PSNR: 2.2858e+01:----Best iter:    3,500 Best PSNR: 2.3052e+01
+25-12-03 02:15:38.625 - INFO: [epoch:324, iter:   3,570, lr:(2.500e-05,)] l_pix: 4.6107e+04 l_hist: 8.9497e-03 
+25-12-03 02:15:44.407 - INFO: # Validation # PSNR: 2.2823e+01:----Best iter:    3,500 Best PSNR: 2.3052e+01
+25-12-03 02:15:52.795 - INFO: [epoch:327, iter:   3,605, lr:(2.500e-05,)] l_pix: 4.3948e+04 l_hist: 7.5926e-03 
+25-12-03 02:15:58.682 - INFO: # Validation # PSNR: 2.3139e+01:----Best iter:    3,500 Best PSNR: 2.3052e+01
+25-12-03 02:15:58.683 - INFO: Saving best models
+25-12-03 02:16:06.184 - INFO: [epoch:330, iter:   3,640, lr:(2.500e-05,)] l_pix: 4.4255e+04 l_hist: 7.5926e-03 
+25-12-03 02:16:11.873 - INFO: # Validation # PSNR: 2.3096e+01:----Best iter:    3,605 Best PSNR: 2.3139e+01
+25-12-03 02:16:20.547 - INFO: [epoch:334, iter:   3,675, lr:(2.500e-05,)] l_pix: 4.5139e+04 l_hist: 8.2374e-03 
+25-12-03 02:16:26.260 - INFO: # Validation # PSNR: 2.3027e+01:----Best iter:    3,605 Best PSNR: 2.3139e+01
+25-12-03 02:16:34.256 - INFO: [epoch:337, iter:   3,710, lr:(2.500e-05,)] l_pix: 5.6517e+04 l_hist: 8.5669e-03 
+25-12-03 02:16:39.950 - INFO: # Validation # PSNR: 2.3183e+01:----Best iter:    3,605 Best PSNR: 2.3139e+01
+25-12-03 02:16:39.951 - INFO: Saving best models
+25-12-03 02:16:47.524 - INFO: [epoch:340, iter:   3,745, lr:(2.500e-05,)] l_pix: 4.9736e+04 l_hist: 8.5669e-03 
+25-12-03 02:16:53.175 - INFO: # Validation # PSNR: 2.3188e+01:----Best iter:    3,710 Best PSNR: 2.3183e+01
+25-12-03 02:16:53.176 - INFO: Saving best models
+25-12-03 02:17:01.754 - INFO: [epoch:343, iter:   3,780, lr:(2.500e-05,)] l_pix: 4.4679e+04 l_hist: 9.1763e-03 
+25-12-03 02:17:07.620 - INFO: # Validation # PSNR: 2.3031e+01:----Best iter:    3,745 Best PSNR: 2.3188e+01
+25-12-03 02:17:16.146 - INFO: [epoch:346, iter:   3,815, lr:(2.500e-05,)] l_pix: 3.9797e+04 l_hist: 6.3636e-03 
+25-12-03 02:17:21.894 - INFO: # Validation # PSNR: 2.3083e+01:----Best iter:    3,745 Best PSNR: 2.3188e+01
+25-12-03 02:17:30.079 - INFO: [epoch:349, iter:   3,850, lr:(2.500e-05,)] l_pix: 4.4819e+04 l_hist: 8.8221e-03 
+25-12-03 02:17:35.829 - INFO: # Validation # PSNR: 2.3211e+01:----Best iter:    3,745 Best PSNR: 2.3188e+01
+25-12-03 02:17:35.831 - INFO: Saving best models
+25-12-03 02:17:43.766 - INFO: [epoch:353, iter:   3,885, lr:(2.500e-05,)] l_pix: 3.5838e+04 l_hist: 8.8221e-03 
+25-12-03 02:17:49.547 - INFO: # Validation # PSNR: 2.3222e+01:----Best iter:    3,850 Best PSNR: 2.3211e+01
+25-12-03 02:17:49.548 - INFO: Saving best models
+25-12-03 02:17:58.439 - INFO: [epoch:356, iter:   3,920, lr:(2.500e-05,)] l_pix: 4.2778e+04 l_hist: 1.0087e-02 
+25-12-03 02:18:04.268 - INFO: # Validation # PSNR: 2.3175e+01:----Best iter:    3,885 Best PSNR: 2.3222e+01
+25-12-03 02:18:12.357 - INFO: [epoch:359, iter:   3,955, lr:(2.500e-05,)] l_pix: 5.6660e+04 l_hist: 1.0921e-02 
+25-12-03 02:18:18.118 - INFO: # Validation # PSNR: 2.3454e+01:----Best iter:    3,885 Best PSNR: 2.3222e+01
+25-12-03 02:18:18.120 - INFO: Saving best models
+25-12-03 02:18:25.514 - INFO: [epoch:362, iter:   3,990, lr:(2.500e-05,)] l_pix: 3.6065e+04 l_hist: 1.0921e-02 
+25-12-03 02:18:31.266 - INFO: # Validation # PSNR: 2.3128e+01:----Best iter:    3,955 Best PSNR: 2.3454e+01
+25-12-03 02:18:39.650 - INFO: [epoch:365, iter:   4,025, lr:(2.500e-05,)] l_pix: 3.8605e+04 l_hist: 9.0830e-03 
+25-12-03 02:18:45.451 - INFO: # Validation # PSNR: 2.3114e+01:----Best iter:    3,955 Best PSNR: 2.3454e+01
+25-12-03 02:18:54.031 - INFO: [epoch:369, iter:   4,060, lr:(2.500e-05,)] l_pix: 4.4099e+04 l_hist: 9.4965e-03 
+25-12-03 02:18:59.796 - INFO: # Validation # PSNR: 2.3202e+01:----Best iter:    3,955 Best PSNR: 2.3454e+01
+25-12-03 02:19:06.702 - INFO: [epoch:372, iter:   4,095, lr:(2.500e-05,)] l_pix: 4.2212e+04 l_hist: 9.4965e-03 
+25-12-03 02:19:12.426 - INFO: # Validation # PSNR: 2.3065e+01:----Best iter:    3,955 Best PSNR: 2.3454e+01
+25-12-03 02:19:20.677 - INFO: [epoch:375, iter:   4,130, lr:(2.500e-05,)] l_pix: 4.7978e+04 l_hist: 8.9685e-03 
+25-12-03 02:19:26.399 - INFO: # Validation # PSNR: 2.3182e+01:----Best iter:    3,955 Best PSNR: 2.3454e+01
+25-12-03 02:19:34.815 - INFO: [epoch:378, iter:   4,165, lr:(2.500e-05,)] l_pix: 4.0381e+04 l_hist: 8.7516e-03 
+25-12-03 02:19:40.539 - INFO: # Validation # PSNR: 2.3214e+01:----Best iter:    3,955 Best PSNR: 2.3454e+01
+25-12-03 02:19:48.842 - INFO: [epoch:381, iter:   4,200, lr:(2.500e-05,)] l_pix: 4.1193e+04 l_hist: 9.3647e-03 
+25-12-03 02:19:54.589 - INFO: # Validation # PSNR: 2.3286e+01:----Best iter:    3,955 Best PSNR: 2.3454e+01
+25-12-03 02:20:01.539 - INFO: [epoch:384, iter:   4,235, lr:(2.500e-05,)] l_pix: 5.2390e+04 l_hist: 9.3647e-03 
+25-12-03 02:20:07.127 - INFO: # Validation # PSNR: 2.3334e+01:----Best iter:    3,955 Best PSNR: 2.3454e+01
+25-12-03 02:20:15.775 - INFO: [epoch:388, iter:   4,270, lr:(2.500e-05,)] l_pix: 4.8521e+04 l_hist: 7.8236e-03 
+25-12-03 02:20:21.494 - INFO: # Validation # PSNR: 2.3496e+01:----Best iter:    3,955 Best PSNR: 2.3454e+01
+25-12-03 02:20:21.496 - INFO: Saving best models
+25-12-03 02:20:29.963 - INFO: [epoch:391, iter:   4,305, lr:(2.500e-05,)] l_pix: 4.5175e+04 l_hist: 8.2368e-03 
+25-12-03 02:20:35.721 - INFO: # Validation # PSNR: 2.3302e+01:----Best iter:    4,270 Best PSNR: 2.3496e+01
+25-12-03 02:20:42.580 - INFO: [epoch:394, iter:   4,340, lr:(2.500e-05,)] l_pix: 4.1511e+04 l_hist: 8.2368e-03 
+25-12-03 02:20:48.284 - INFO: # Validation # PSNR: 2.3287e+01:----Best iter:    4,270 Best PSNR: 2.3496e+01
+25-12-03 02:20:56.456 - INFO: [epoch:397, iter:   4,375, lr:(2.500e-05,)] l_pix: 4.4105e+04 l_hist: 8.5938e-03 
+25-12-03 02:21:02.134 - INFO: # Validation # PSNR: 2.3521e+01:----Best iter:    4,270 Best PSNR: 2.3496e+01
+25-12-03 02:21:02.135 - INFO: Saving best models
+25-12-03 02:21:10.953 - INFO: [epoch:400, iter:   4,410, lr:(2.500e-05,)] l_pix: 5.5766e+04 l_hist: 9.5719e-03 
+25-12-03 02:21:16.702 - INFO: # Validation # PSNR: 2.3421e+01:----Best iter:    4,375 Best PSNR: 2.3521e+01
+25-12-03 02:21:24.219 - INFO: [epoch:404, iter:   4,445, lr:(2.500e-05,)] l_pix: 5.1028e+04 l_hist: 9.5719e-03 
+25-12-03 02:21:29.924 - INFO: # Validation # PSNR: 2.3308e+01:----Best iter:    4,375 Best PSNR: 2.3521e+01
+25-12-03 02:21:38.300 - INFO: [epoch:407, iter:   4,480, lr:(2.500e-05,)] l_pix: 4.4646e+04 l_hist: 7.2290e-03 
+25-12-03 02:21:44.097 - INFO: # Validation # PSNR: 2.3499e+01:----Best iter:    4,375 Best PSNR: 2.3521e+01
+25-12-03 02:21:52.267 - INFO: [epoch:410, iter:   4,515, lr:(1.250e-05,)] l_pix: 3.6539e+04 l_hist: 1.0134e-02 
+25-12-03 02:21:58.000 - INFO: # Validation # PSNR: 2.3535e+01:----Best iter:    4,375 Best PSNR: 2.3521e+01
+25-12-03 02:21:58.002 - INFO: Saving best models
+25-12-03 02:22:06.636 - INFO: [epoch:413, iter:   4,550, lr:(1.250e-05,)] l_pix: 3.5537e+04 l_hist: 5.8374e-03 
+25-12-03 02:22:12.355 - INFO: # Validation # PSNR: 2.3420e+01:----Best iter:    4,515 Best PSNR: 2.3535e+01
+25-12-03 02:22:19.332 - INFO: [epoch:416, iter:   4,585, lr:(1.250e-05,)] l_pix: 4.0272e+04 l_hist: 5.8374e-03 
+25-12-03 02:22:25.036 - INFO: # Validation # PSNR: 2.3433e+01:----Best iter:    4,515 Best PSNR: 2.3535e+01
+25-12-03 02:22:33.249 - INFO: [epoch:419, iter:   4,620, lr:(1.250e-05,)] l_pix: 5.0240e+04 l_hist: 9.4638e-03 
+25-12-03 02:22:39.036 - INFO: # Validation # PSNR: 2.3290e+01:----Best iter:    4,515 Best PSNR: 2.3535e+01
+25-12-03 02:22:47.817 - INFO: [epoch:423, iter:   4,655, lr:(1.250e-05,)] l_pix: 3.8621e+04 l_hist: 6.3575e-03 
+25-12-03 02:22:53.613 - INFO: # Validation # PSNR: 2.3401e+01:----Best iter:    4,515 Best PSNR: 2.3535e+01
+25-12-03 02:23:00.635 - INFO: [epoch:426, iter:   4,690, lr:(1.250e-05,)] l_pix: 3.4750e+04 l_hist: 6.3575e-03 
+25-12-03 02:23:06.322 - INFO: # Validation # PSNR: 2.3379e+01:----Best iter:    4,515 Best PSNR: 2.3535e+01
+25-12-03 02:23:14.365 - INFO: [epoch:429, iter:   4,725, lr:(1.250e-05,)] l_pix: 4.4524e+04 l_hist: 6.2303e-03 
+25-12-03 02:23:20.121 - INFO: # Validation # PSNR: 2.3394e+01:----Best iter:    4,515 Best PSNR: 2.3535e+01
+25-12-03 02:23:28.492 - INFO: [epoch:432, iter:   4,760, lr:(1.250e-05,)] l_pix: 3.8511e+04 l_hist: 6.7940e-03 
+25-12-03 02:23:34.292 - INFO: # Validation # PSNR: 2.3418e+01:----Best iter:    4,515 Best PSNR: 2.3535e+01
+25-12-03 02:23:41.338 - INFO: [epoch:435, iter:   4,795, lr:(1.250e-05,)] l_pix: 4.2108e+04 l_hist: 6.7940e-03 
+25-12-03 02:23:47.169 - INFO: # Validation # PSNR: 2.3518e+01:----Best iter:    4,515 Best PSNR: 2.3535e+01
+25-12-03 02:23:55.331 - INFO: Saving the final model.
+25-12-03 02:23:55.568 - INFO: End of training.

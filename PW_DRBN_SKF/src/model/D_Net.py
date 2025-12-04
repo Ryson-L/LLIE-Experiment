@@ -356,6 +356,54 @@ class Discriminator(nn.Module):
         x = self.conv9(x)
         return self.sigmoid(F.avg_pool2d(x, x.size()[2:])).view(x.size()[0], -1)
 
+# def calculate_loss_D(model_D, input_high, out, seg_map, person_id=36, lamda=0.9):
+#     """
+#     使用全图 + 人像区域的对抗损失：
+#     - global branch: 对 input_high / out 做普通 GAN loss
+#     - local branch: 只在 seg_map 中 person_id 对应的区域上计算 GAN loss
+#     """
+#     MSEloss = torch.nn.MSELoss()
+
+#     # --------------------
+#     # 1. global adversarial loss（和原来一样）
+#     # --------------------
+#     fake = torch.zeros((len(out), 1), device=out.device)
+#     real = torch.ones((len(out), 1), device=out.device)
+
+#     fake_label_global = model_D(out)
+#     real_label_global = model_D(input_high)
+
+#     fake_loss_global = MSEloss(fake_label_global, fake)
+#     real_loss_global = MSEloss(real_label_global, real)
+#     global_loss = (fake_loss_global + real_loss_global) / 2.0
+
+#     # --------------------
+#     # 2. portrait-only local loss
+#     # --------------------
+#     # seg_map: (N, C_seg, H, W)，取 argmax 得到每个像素的类别 id
+#     # person_id = 36 来自 HRNet Pascal Context 的 person 类
+#     with torch.no_grad():
+#         seg_cls = seg_map.argmax(dim=1, keepdim=True)      # (N, 1, H, W)
+#         mask_person = (seg_cls == person_id).float()       # (N, 1, H, W)
+#         mask_person_3 = mask_person.repeat(1, 3, 1, 1)     # (N, 3, H, W)
+
+#     # 只保留人像区域
+#     input_high_portrait = input_high * mask_person_3
+#     out_portrait = out * mask_person_3
+
+#     fake_label_portrait = model_D(out_portrait)
+#     real_label_portrait = model_D(input_high_portrait)
+
+#     fake_loss_portrait = MSEloss(fake_label_portrait, fake)
+#     real_loss_portrait = MSEloss(real_label_portrait, real)
+#     local_loss = (fake_loss_portrait + real_loss_portrait) / 2.0
+
+#     # --------------------
+#     # 3. 混合 global + portrait-local
+#     # --------------------
+#     D_loss = lamda * global_loss + (1.0 - lamda) * local_loss
+
+#     return D_loss
 
 def calculate_loss_D(model_D, input_high, out, seg_map):
     # Compute losses
@@ -402,13 +450,13 @@ def calculate_loss_D(model_D, input_high, out, seg_map):
             + (1 - lamda) * (fake_loss_max_1 + real_loss_max_1) / 2
     elif fake_loss_max_1 > fake_loss_max_2 and real_loss_max_1 < real_loss_max_2:
         D_loss = lamda * (fake_loss + real_loss) / 2 \
-                 + (1 - lamda) * (fake_loss_max_1 + real_loss_max_2) / 2
+                + (1 - lamda) * (fake_loss_max_1 + real_loss_max_2) / 2
     elif fake_loss_max_1 < fake_loss_max_2 and real_loss_max_1 > real_loss_max_2:
         D_loss = lamda * (fake_loss + real_loss) / 2 \
-                 + (1 - lamda) * (fake_loss_max_2 + real_loss_max_1) / 2
+                + (1 - lamda) * (fake_loss_max_2 + real_loss_max_1) / 2
     else:
         D_loss = lamda * (fake_loss + real_loss) / 2 \
-                 + (1 - lamda) * (fake_loss_max_2 + real_loss_max_2) / 2
+                + (1 - lamda) * (fake_loss_max_2 + real_loss_max_2) / 2
 
     return D_loss
 

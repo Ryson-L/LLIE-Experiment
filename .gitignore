@@ -6,6 +6,10 @@ __pycache__/
 *.pth
 *.pt
 
+# 图片不放进去
+*.png
+*.pdf
+
 # 实验输出目录（根据你实际情况调整）
 third-party/DRBN_SKF/experiment/
 third-party/DRBN_SKF/ckpt/

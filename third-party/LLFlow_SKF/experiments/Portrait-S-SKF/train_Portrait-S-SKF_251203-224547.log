@@ -1,0 +1,248 @@
+25-12-03 22:45:47.149 - INFO:   name: Portrait-S-SKF
+  use_tb_logger: True
+  model: LLFlow
+  distortion: sr
+  scale: 1
+  gpu_ids: [0]
+  dataset: LoL
+  optimize_all_z: False
+  cond_encoder: ConEncoder1
+  train_gt_ratio: 0.2
+  avg_color_map: False
+  seg: Ture
+  adv_loss: False
+  concat_histeq: True
+  histeq_as_input: False
+  concat_color_map: False
+  gray_map: False
+  align_condition_feature: False
+  align_weight: 0.001
+  align_maxpool: True
+  to_yuv: False
+  encode_color_map: False
+  le_curve: False
+  datasets:[
+    train:[
+      root: ../Portrait_Dataset
+      quant: 32
+      use_shuffle: True
+      n_workers: 8
+      batch_size: 16
+      use_flip: True
+      color: RGB
+      use_crop: True
+      GT_size: 160
+      noise_prob: 0
+      noise_level: 5
+      log_low: True
+      gamma_aug: False
+      phase: train
+      scale: 1
+      data_type: img
+    ]
+    val:[
+      root: ../Portrait_Dataset
+      n_workers: 8
+      quant: 32
+      n_max: 20
+      batch_size: 1
+      log_low: True
+      phase: val
+      scale: 1
+      data_type: img
+    ]
+  ]
+  dataroot_GT: ../Portrait_Dataset/test/high
+  dataroot_LR: ../Portrait_Dataset/test/low
+  model_path: ../ckpt/Portrait-S-SKF/Portrait-S-SKF.pth
+  heat: 0
+  network_G:[
+    which_model_G: LLFlow
+    in_nc: 3
+    out_nc: 3
+    nf: 32
+    nb: 4
+    train_RRDB: False
+    train_RRDB_delay: 0.5
+    flow:[
+      K: 4
+      L: 3
+      noInitialInj: True
+      coupling: CondAffineSeparatedAndCond
+      additionalFlowNoAffine: 2
+      conditionInFeaDim: 64
+      split:[
+        enable: False
+      ]
+      fea_up0: True
+      stackRRDB:[
+        blocks: [1]
+        concat: True
+      ]
+    ]
+    scale: 1
+  ]
+  path:[
+    strict_load: True
+    resume_state: auto
+    root: /root/LLIE-Experiment/third-party/LLFlow_SKF
+    experiments_root: /root/LLIE-Experiment/third-party/LLFlow_SKF/experiments/Portrait-S-SKF
+    models: /root/LLIE-Experiment/third-party/LLFlow_SKF/experiments/Portrait-S-SKF/models
+    training_state: /root/LLIE-Experiment/third-party/LLFlow_SKF/experiments/Portrait-S-SKF/training_state
+    log: /root/LLIE-Experiment/third-party/LLFlow_SKF/experiments/Portrait-S-SKF
+    val_images: /root/LLIE-Experiment/third-party/LLFlow_SKF/experiments/Portrait-S-SKF/val_images
+  ]
+  train:[
+    manual_seed: 10
+    lr_G: 0.0005
+    weight_decay_G: 0
+    beta1: 0.9
+    beta2: 0.99
+    lr_scheme: MultiStepLR
+    warmup_iter: -1
+    lr_steps_rel: [0.5, 0.75, 0.9, 0.95]
+    lr_gamma: 0.5
+    weight_l1: 0
+    weight_fl: 1
+    niter: 5250
+    val_freq: 35
+    lr_steps: [2625, 3937, 4725, 4987]
+  ]
+  val:[
+    n_sample: 4
+  ]
+  test:[
+    heats: [0.0, 0.7, 0.8, 0.9]
+  ]
+  logger:[
+    print_freq: 35
+    save_checkpoint_freq: 1000.0
+  ]
+  is_train: True
+  dist: False
+
+25-12-03 22:45:47.206 - INFO: Random seed: 10
+25-12-03 22:45:50.560 - INFO: Model [LLFlowModel] is created.
+25-12-03 22:45:51.759 - INFO: Start training from epoch: 0, iter: 0
+25-12-03 22:45:57.219 - INFO: Parameters of full network 5.2604 and encoder 1.7014
+25-12-03 22:47:00.943 - INFO: # Validation # PSNR: 1.5967e+01 SSIM: 1.8365e-01
+25-12-03 22:47:00.943 - INFO: Saving best models
+25-12-03 22:48:04.295 - INFO: # Validation # PSNR: 1.9658e+01 SSIM: 5.1679e-01
+25-12-03 22:48:04.295 - INFO: Saving best models
+25-12-03 22:49:09.605 - INFO: # Validation # PSNR: 2.0166e+01 SSIM: 5.8769e-01
+25-12-03 22:49:09.605 - INFO: Saving best models
+25-12-03 22:50:15.031 - INFO: # Validation # PSNR: 2.0677e+01 SSIM: 6.2796e-01
+25-12-03 22:50:15.032 - INFO: Saving best models
+25-12-03 22:51:19.265 - INFO: # Validation # PSNR: 2.1434e+01 SSIM: 6.8909e-01
+25-12-03 22:51:19.266 - INFO: Saving best models
+25-12-03 22:52:25.421 - INFO: # Validation # PSNR: 2.2353e+01 SSIM: 7.0697e-01
+25-12-03 22:52:25.422 - INFO: Saving best models
+25-12-03 22:53:30.461 - INFO: # Validation # PSNR: 2.3096e+01 SSIM: 7.4423e-01
+25-12-03 22:53:30.461 - INFO: Saving best models
+25-12-03 22:54:34.417 - INFO: # Validation # PSNR: 2.3585e+01 SSIM: 7.5102e-01
+25-12-03 22:54:34.417 - INFO: Saving best models
+25-12-03 22:55:38.558 - INFO: # Validation # PSNR: 2.4375e+01 SSIM: 7.6602e-01
+25-12-03 22:55:38.558 - INFO: Saving best models
+25-12-03 22:56:42.741 - INFO: # Validation # PSNR: 2.3906e+01 SSIM: 7.6287e-01
+25-12-03 22:57:45.268 - INFO: # Validation # PSNR: 2.4546e+01 SSIM: 7.8626e-01
+25-12-03 22:57:45.268 - INFO: Saving best models
+25-12-03 22:58:51.907 - INFO: # Validation # PSNR: 2.5078e+01 SSIM: 7.9576e-01
+25-12-03 22:58:51.907 - INFO: Saving best models
+25-12-03 22:59:57.549 - INFO: # Validation # PSNR: 2.5037e+01 SSIM: 7.7635e-01
+25-12-03 23:01:01.999 - INFO: # Validation # PSNR: 2.5039e+01 SSIM: 7.8646e-01
+25-12-03 23:02:06.359 - INFO: # Validation # PSNR: 2.4259e+01 SSIM: 7.7827e-01
+25-12-03 23:03:10.021 - INFO: # Validation # PSNR: 2.5344e+01 SSIM: 8.0206e-01
+25-12-03 23:03:10.022 - INFO: Saving best models
+25-12-03 23:04:16.370 - INFO: # Validation # PSNR: 2.5384e+01 SSIM: 7.9686e-01
+25-12-03 23:04:16.370 - INFO: Saving best models
+25-12-03 23:05:23.735 - INFO: # Validation # PSNR: 2.4399e+01 SSIM: 7.8154e-01
+25-12-03 23:06:31.074 - INFO: # Validation # PSNR: 2.3508e+01 SSIM: 7.7035e-01
+25-12-03 23:07:36.106 - INFO: # Validation # PSNR: 2.4346e+01 SSIM: 7.9612e-01
+25-12-03 23:08:41.015 - INFO: # Validation # PSNR: 2.3164e+01 SSIM: 7.7041e-01
+25-12-03 23:09:48.375 - INFO: # Validation # PSNR: 2.6035e+01 SSIM: 8.1706e-01
+25-12-03 23:09:48.376 - INFO: Saving best models
+25-12-03 23:10:52.432 - INFO: # Validation # PSNR: 2.6083e+01 SSIM: 8.1957e-01
+25-12-03 23:10:52.433 - INFO: Saving best models
+25-12-03 23:11:57.499 - INFO: # Validation # PSNR: 2.6145e+01 SSIM: 8.1977e-01
+25-12-03 23:11:57.499 - INFO: Saving best models
+25-12-03 23:13:01.607 - INFO: # Validation # PSNR: 2.2281e+01 SSIM: 7.8206e-01
+25-12-03 23:14:08.431 - INFO: # Validation # PSNR: 2.5222e+01 SSIM: 8.1516e-01
+25-12-03 23:15:16.093 - INFO: # Validation # PSNR: 2.5428e+01 SSIM: 8.1571e-01
+25-12-03 23:16:21.358 - INFO: # Validation # PSNR: 2.6289e+01 SSIM: 8.2573e-01
+25-12-03 23:16:21.359 - INFO: Saving best models
+25-12-03 23:16:58.248 - INFO: Saving models and training states.
+25-12-03 23:17:28.398 - INFO: # Validation # PSNR: 2.6672e+01 SSIM: 8.3160e-01
+25-12-03 23:17:28.398 - INFO: Saving best models
+25-12-03 23:18:36.370 - INFO: # Validation # PSNR: 2.5489e+01 SSIM: 8.2102e-01
+25-12-03 23:19:41.961 - INFO: # Validation # PSNR: 2.5924e+01 SSIM: 8.1589e-01
+25-12-03 23:20:46.822 - INFO: # Validation # PSNR: 2.4838e+01 SSIM: 8.0662e-01
+25-12-03 23:21:52.721 - INFO: # Validation # PSNR: 2.6240e+01 SSIM: 8.2991e-01
+25-12-03 23:23:00.655 - INFO: # Validation # PSNR: 2.5119e+01 SSIM: 8.1603e-01
+25-12-03 23:24:07.084 - INFO: # Validation # PSNR: 2.7035e+01 SSIM: 8.4032e-01
+25-12-03 23:24:07.084 - INFO: Saving best models
+25-12-03 23:25:13.113 - INFO: # Validation # PSNR: 2.5705e+01 SSIM: 8.2542e-01
+25-12-03 23:26:18.155 - INFO: # Validation # PSNR: 2.6572e+01 SSIM: 8.3481e-01
+25-12-03 23:27:24.295 - INFO: # Validation # PSNR: 2.6108e+01 SSIM: 8.2734e-01
+25-12-03 23:28:30.219 - INFO: # Validation # PSNR: 2.7035e+01 SSIM: 8.3714e-01
+25-12-03 23:29:35.034 - INFO: # Validation # PSNR: 2.7118e+01 SSIM: 8.4237e-01
+25-12-03 23:29:35.034 - INFO: Saving best models
+25-12-03 23:30:41.512 - INFO: # Validation # PSNR: 2.3972e+01 SSIM: 8.0502e-01
+25-12-03 23:31:48.254 - INFO: # Validation # PSNR: 2.7079e+01 SSIM: 8.4698e-01
+25-12-03 23:32:53.485 - INFO: # Validation # PSNR: 2.5176e+01 SSIM: 8.2100e-01
+25-12-03 23:34:02.274 - INFO: # Validation # PSNR: 2.6036e+01 SSIM: 8.3021e-01
+25-12-03 23:35:09.578 - INFO: # Validation # PSNR: 2.7147e+01 SSIM: 8.4567e-01
+25-12-03 23:35:09.579 - INFO: Saving best models
+25-12-03 23:36:15.775 - INFO: # Validation # PSNR: 2.5815e+01 SSIM: 8.2874e-01
+25-12-03 23:37:22.647 - INFO: # Validation # PSNR: 2.6709e+01 SSIM: 8.4021e-01
+25-12-03 23:38:28.763 - INFO: # Validation # PSNR: 2.5839e+01 SSIM: 8.3556e-01
+25-12-03 23:39:35.980 - INFO: # Validation # PSNR: 2.5904e+01 SSIM: 8.3030e-01
+25-12-03 23:40:43.164 - INFO: # Validation # PSNR: 2.5791e+01 SSIM: 8.2461e-01
+25-12-03 23:41:49.153 - INFO: # Validation # PSNR: 2.6567e+01 SSIM: 8.3880e-01
+25-12-03 23:42:53.736 - INFO: # Validation # PSNR: 2.7129e+01 SSIM: 8.4144e-01
+25-12-03 23:43:59.426 - INFO: # Validation # PSNR: 2.5948e+01 SSIM: 8.3870e-01
+25-12-03 23:45:06.039 - INFO: # Validation # PSNR: 2.7562e+01 SSIM: 8.5075e-01
+25-12-03 23:45:06.039 - INFO: Saving best models
+25-12-03 23:46:10.402 - INFO: # Validation # PSNR: 2.5828e+01 SSIM: 8.3095e-01
+25-12-03 23:47:17.885 - INFO: # Validation # PSNR: 2.3982e+01 SSIM: 8.1344e-01
+25-12-03 23:48:24.790 - INFO: # Validation # PSNR: 2.6828e+01 SSIM: 8.4418e-01
+25-12-03 23:48:33.395 - INFO: Saving models and training states.
+25-12-03 23:49:30.978 - INFO: # Validation # PSNR: 2.6175e+01 SSIM: 8.4306e-01
+25-12-03 23:50:38.643 - INFO: # Validation # PSNR: 2.6567e+01 SSIM: 8.3118e-01
+25-12-03 23:51:46.278 - INFO: # Validation # PSNR: 2.5363e+01 SSIM: 8.2655e-01
+25-12-03 23:52:53.348 - INFO: # Validation # PSNR: 2.5586e+01 SSIM: 8.3328e-01
+25-12-03 23:53:59.445 - INFO: # Validation # PSNR: 2.6108e+01 SSIM: 8.4237e-01
+25-12-03 23:55:05.034 - INFO: # Validation # PSNR: 2.7472e+01 SSIM: 8.5330e-01
+25-12-03 23:56:10.049 - INFO: # Validation # PSNR: 2.6875e+01 SSIM: 8.4626e-01
+25-12-03 23:57:17.751 - INFO: # Validation # PSNR: 2.4326e+01 SSIM: 8.1643e-01
+25-12-03 23:58:24.289 - INFO: # Validation # PSNR: 2.6699e+01 SSIM: 8.5184e-01
+25-12-03 23:59:31.136 - INFO: # Validation # PSNR: 2.7286e+01 SSIM: 8.5629e-01
+25-12-04 00:00:37.801 - INFO: # Validation # PSNR: 2.7317e+01 SSIM: 8.4682e-01
+25-12-04 00:01:43.028 - INFO: # Validation # PSNR: 2.7199e+01 SSIM: 8.4978e-01
+25-12-04 00:02:49.293 - INFO: # Validation # PSNR: 2.7597e+01 SSIM: 8.5568e-01
+25-12-04 00:02:49.293 - INFO: Saving best models
+25-12-04 00:03:55.042 - INFO: # Validation # PSNR: 2.6969e+01 SSIM: 8.5140e-01
+25-12-04 00:05:01.524 - INFO: # Validation # PSNR: 2.7822e+01 SSIM: 8.5975e-01
+25-12-04 00:05:01.524 - INFO: Saving best models
+25-12-04 00:06:06.986 - INFO: # Validation # PSNR: 2.6136e+01 SSIM: 8.4239e-01
+25-12-04 00:07:12.246 - INFO: # Validation # PSNR: 2.5741e+01 SSIM: 8.4168e-01
+25-12-04 00:08:18.792 - INFO: # Validation # PSNR: 2.5174e+01 SSIM: 8.3497e-01
+25-12-04 00:09:24.725 - INFO: # Validation # PSNR: 2.7311e+01 SSIM: 8.5770e-01
+25-12-04 00:10:31.247 - INFO: # Validation # PSNR: 2.6758e+01 SSIM: 8.4895e-01
+25-12-04 00:11:39.999 - INFO: # Validation # PSNR: 2.7445e+01 SSIM: 8.6215e-01
+25-12-04 00:12:49.958 - INFO: # Validation # PSNR: 2.6914e+01 SSIM: 8.5271e-01
+25-12-04 00:13:58.558 - INFO: # Validation # PSNR: 2.7372e+01 SSIM: 8.5665e-01
+25-12-04 00:15:07.246 - INFO: # Validation # PSNR: 2.5343e+01 SSIM: 8.3774e-01
+25-12-04 00:16:18.572 - INFO: # Validation # PSNR: 2.7076e+01 SSIM: 8.5986e-01
+25-12-04 00:17:27.524 - INFO: # Validation # PSNR: 2.6499e+01 SSIM: 8.4978e-01
+25-12-04 00:18:35.817 - INFO: # Validation # PSNR: 2.6965e+01 SSIM: 8.5466e-01
+25-12-04 00:19:43.732 - INFO: # Validation # PSNR: 2.7707e+01 SSIM: 8.6508e-01
+25-12-04 00:20:28.757 - INFO: Saving models and training states.
+25-12-04 00:20:49.863 - INFO: # Validation # PSNR: 2.7103e+01 SSIM: 8.5677e-01
+25-12-04 00:21:58.190 - INFO: # Validation # PSNR: 2.7109e+01 SSIM: 8.5562e-01
+25-12-04 00:23:03.903 - INFO: # Validation # PSNR: 2.7640e+01 SSIM: 8.6403e-01
+25-12-04 00:24:10.759 - INFO: # Validation # PSNR: 2.7527e+01 SSIM: 8.5985e-01
+25-12-04 00:25:16.104 - INFO: # Validation # PSNR: 2.7472e+01 SSIM: 8.6452e-01
+25-12-04 00:26:21.593 - INFO: # Validation # PSNR: 2.6622e+01 SSIM: 8.5218e-01
+25-12-04 00:27:29.298 - INFO: # Validation # PSNR: 2.7059e+01 SSIM: 8.5263e-01
+25-12-04 00:28:36.425 - INFO: # Validation # PSNR: 2.7011e+01 SSIM: 8.4755e-01
+25-12-04 00:29:44.428 - INFO: # Validation # PSNR: 2.7051e+01 SSIM: 8.5314e-01

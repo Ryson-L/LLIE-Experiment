@@ -1,0 +1,1306 @@
+DRBN(
+  (recur1): DRBN_BU(
+    (SFENet1): Conv2d(6, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (SFENet2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (RDBs): ModuleList(
+      (0-1): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (2-3): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(48, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(64, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(80, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(96, 32, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (4-5): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+    )
+    (UPNet): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet2): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet4): Sequential(
+      (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (Down1): Conv2d(16, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Down2): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Up1): ConvTranspose2d(16, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Up2): ConvTranspose2d(32, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Relu): ReLU()
+    (Img_up): Upsample(scale_factor=2.0, mode='bilinear')
+  )
+  (recur2): DRBN_BU(
+    (SFENet1): Conv2d(6, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (SFENet2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (RDBs): ModuleList(
+      (0-1): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (2-3): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(48, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(64, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(80, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(96, 32, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (4-5): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+    )
+    (UPNet): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet2): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet4): Sequential(
+      (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (Down1): Conv2d(16, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Down2): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Up1): ConvTranspose2d(16, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Up2): ConvTranspose2d(32, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Relu): ReLU()
+    (Img_up): Upsample(scale_factor=2.0, mode='bilinear')
+  )
+  (recur3): DRBN_BU(
+    (SFENet1): Conv2d(6, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (SFENet2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (RDBs): ModuleList(
+      (0-1): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (2-3): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(48, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(64, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(80, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(96, 32, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (4-5): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+    )
+    (UPNet): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet2): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet4): Sequential(
+      (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (Down1): Conv2d(16, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Down2): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Up1): ConvTranspose2d(16, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Up2): ConvTranspose2d(32, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Relu): ReLU()
+    (Img_up): Upsample(scale_factor=2.0, mode='bilinear')
+  )
+  (recur4): DRBN_BU(
+    (SFENet1): Conv2d(6, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (SFENet2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (RDBs): ModuleList(
+      (0-1): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (2-3): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(48, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(64, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(80, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(96, 32, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (4-5): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+    )
+    (UPNet): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet2): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet4): Sequential(
+      (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (Down1): Conv2d(16, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Down2): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Up1): ConvTranspose2d(16, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Up2): ConvTranspose2d(32, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Relu): ReLU()
+    (Img_up): Upsample(scale_factor=2.0, mode='bilinear')
+    (fuseblk_1): TransformerBlock(
+      (conv1): Conv2d(96, 32, kernel_size=(1, 1), stride=(1, 1))
+      (norm1): LayerNorm(
+        (body): WithBias_LayerNorm()
+      )
+      (attn): Attention(
+        (kv): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (kv_dwconv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+        (q): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (q_dwconv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (project_out): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (norm2): LayerNorm(
+        (body): WithBias_LayerNorm()
+      )
+      (ffn): FeedForward(
+        (gelu): GELU()
+        (project_in): Conv2d(32, 170, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (dwconv): Conv2d(170, 170, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=170, bias=False)
+        (project_out): Conv2d(85, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+    )
+    (fuseblk_2): TransformerBlock(
+      (conv1): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      (norm1): LayerNorm(
+        (body): WithBias_LayerNorm()
+      )
+      (attn): Attention(
+        (kv): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (kv_dwconv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32, bias=False)
+        (q): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (q_dwconv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (project_out): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (norm2): LayerNorm(
+        (body): WithBias_LayerNorm()
+      )
+      (ffn): FeedForward(
+        (gelu): GELU()
+        (project_in): Conv2d(16, 84, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (dwconv): Conv2d(84, 84, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=84, bias=False)
+        (project_out): Conv2d(42, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+    )
+    (fuseblk_3): TransformerBlock(
+      (conv1): Conv2d(59, 16, kernel_size=(1, 1), stride=(1, 1))
+      (norm1): LayerNorm(
+        (body): WithBias_LayerNorm()
+      )
+      (attn): Attention(
+        (kv): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (kv_dwconv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32, bias=False)
+        (q): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (q_dwconv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (project_out): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (norm2): LayerNorm(
+        (body): WithBias_LayerNorm()
+      )
+      (ffn): FeedForward(
+        (gelu): GELU()
+        (project_in): Conv2d(16, 84, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (dwconv): Conv2d(84, 84, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=84, bias=False)
+        (project_out): Conv2d(42, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+    )
+  )
+)
+Loading Baseline model from ./baseline_model.pt...
+>>> SUCCESS: Baseline loaded (381 params).
+[Epoch 2]	Learning rate: 1.00e-4
+[16/555]	205895.546875	-0.9700685739517212	4.675703894463368e-05	0.20589648187160492	D: 0.2502264380455017	G: 0.25921159982681274	3.1+1.5s
+[400/555]	176465.6875	-0.9862863421440125	5.5202363000717014e-05	0.17646664381027222	D: 0.24956105649471283	G: 0.2596796751022339	52.3+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.241 (Best: 22.241 @epoch 1)
+Total time: 2.08s
+
+[Epoch 3]	Learning rate: 1.00e-4
+[16/555]	184999.609375	-0.9697440266609192	4.5877932279836386e-05	0.18500055372714996	D: 0.25503063201904297	G: 0.32441848516464233	2.1+1.3s
+[400/555]	174126.46875	-1.0010063648223877	4.717225601780228e-05	0.17412742972373962	D: 0.25397762656211853	G: 0.3221514821052551	52.4+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 21.162 (Best: 22.241 @epoch 1)
+Total time: 1.83s
+
+[Epoch 4]	Learning rate: 1.00e-4
+[16/555]	164587.640625	-0.9474769830703735	4.889161937171593e-05	0.1645885854959488	D: 0.2621144652366638	G: 0.15256617963314056	2.1+1.3s
+[400/555]	131824.234375	-0.93638014793396	3.6367186112329364e-05	0.13182516396045685	D: 0.2619009017944336	G: 0.14961351454257965	52.6+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.451 (Best: 22.451 @epoch 3)
+Total time: 1.87s
+
+[Epoch 5]	Learning rate: 1.00e-4
+[16/555]	192607.90625	-0.9644708037376404	4.9600967031437904e-05	0.19260884821414948	D: 0.2531571090221405	G: 0.19709137082099915	2.1+1.4s
+[400/555]	205327.203125	-0.9744199514389038	4.7632347559556365e-05	0.20532815158367157	D: 0.25343960523605347	G: 0.196346715092659	51.8+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 21.042 (Best: 22.451 @epoch 3)
+Total time: 1.84s
+
+[Epoch 6]	Learning rate: 1.00e-4
+[16/555]	167490.859375	-0.9703878164291382	4.435515438672155e-05	0.16749180853366852	D: 0.2534264326095581	G: 0.19150982797145844	2.1+1.2s
+[400/555]	214343.5625	-0.9470372796058655	3.725098940776661e-05	0.21434448659420013	D: 0.2537701427936554	G: 0.19392040371894836	52.1+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.121 (Best: 22.451 @epoch 3)
+Total time: 1.86s
+
+[Epoch 7]	Learning rate: 1.00e-4
+[16/555]	161990.03125	-0.9455485343933105	4.1429368138778955e-05	0.1619909405708313	D: 0.25428542494773865	G: 0.3214091658592224	2.1+1.3s
+[400/555]	248530.46875	-0.9724833369255066	3.938600275432691e-05	0.24853140115737915	D: 0.25396016240119934	G: 0.321169376373291	52.1+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 21.773 (Best: 22.451 @epoch 3)
+Total time: 1.85s
+
+[Epoch 8]	Learning rate: 1.00e-4
+[16/555]	192670.21875	-0.9660272002220154	4.9779293476603925e-05	0.19267116487026215	D: 0.2575185298919678	G: 0.17143625020980835	2.1+1.3s
+[400/555]	149722.171875	-0.9936169385910034	4.580519089358859e-05	0.14972315728664398	D: 0.257852166891098	G: 0.16992899775505066	52.2+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.005 (Best: 22.451 @epoch 3)
+Total time: 1.88s
+
+[Epoch 9]	Learning rate: 1.00e-4
+[16/555]	213915.90625	-0.94532710313797	4.147465369896963e-05	0.2139168232679367	D: 0.2507172226905823	G: 0.27393966913223267	2.1+1.2s
+[400/555]	171202.015625	-0.9676761031150818	4.638372774934396e-05	0.17120295763015747	D: 0.25029459595680237	G: 0.2750363349914551	52.0+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.311 (Best: 22.451 @epoch 3)
+Total time: 1.89s
+
+[Epoch 10]	Learning rate: 1.00e-4
+[16/555]	183263.6875	-0.9516373872756958	4.1964663978433236e-05	0.1832646131515503	D: 0.25808897614479065	G: 0.35390400886535645	2.1+1.2s
+[400/555]	214905.4375	-0.9442755579948425	4.7550427552778274e-05	0.21490634977817535	D: 0.25819137692451477	G: 0.3516736328601837	52.0+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 21.971 (Best: 22.451 @epoch 3)
+Total time: 1.85s
+
+[Epoch 11]	Learning rate: 1.00e-4
+[16/555]	163732.65625	-0.9778872132301331	3.611648571677506e-05	0.1637336164712906	D: 0.252472847700119	G: 0.20540736615657806	2.1+1.2s
+[400/555]	177307.421875	-0.9671565890312195	3.93825102946721e-05	0.17730838060379028	D: 0.2521202266216278	G: 0.20593175292015076	51.9+1.2s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.401 (Best: 22.451 @epoch 3)
+Total time: 1.83s
+
+[Epoch 12]	Learning rate: 1.00e-4
+[16/555]	177377.1875	-0.9025779962539673	3.759119499591179e-05	0.17737805843353271	D: 0.2558397352695465	G: 0.3348385691642761	2.1+1.3s
+[400/555]	212944.546875	-0.950783371925354	7.22200857126154e-05	0.21294546127319336	D: 0.25539663434028625	G: 0.3332943022251129	52.0+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.053 (Best: 22.451 @epoch 3)
+Total time: 1.88s
+
+[Epoch 13]	Learning rate: 1.00e-4
+[16/555]	153445.921875	-0.943476140499115	3.793637370108627e-05	0.15344683825969696	D: 0.2559765577316284	G: 0.18033266067504883	2.1+1.3s
+[400/555]	162941.890625	-0.9643973112106323	3.908029611920938e-05	0.16294284164905548	D: 0.25546184182167053	G: 0.18185196816921234	52.0+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.359 (Best: 22.451 @epoch 3)
+Total time: 1.84s
+
+[Epoch 14]	Learning rate: 1.00e-4
+[16/555]	152521.609375	-0.9814671874046326	4.207462552585639e-05	0.15252256393432617	D: 0.25008267164230347	G: 0.24976377189159393	2.1+1.2s
+[400/555]	174371.203125	-0.9832695126533508	3.9741487853461877e-05	0.17437215149402618	D: 0.250396728515625	G: 0.2502816617488861	51.9+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.434 (Best: 22.451 @epoch 3)
+Total time: 1.85s
+
+[Epoch 15]	Learning rate: 1.00e-4
+[16/555]	199865.328125	-0.9694549441337585	4.707354310085066e-05	0.19986627995967865	D: 0.2527075707912445	G: 0.21071019768714905	2.1+1.2s
+[400/555]	152134.953125	-0.9864014387130737	4.7133500629570335e-05	0.1521359235048294	D: 0.25248658657073975	G: 0.21087093651294708	52.5+1.2s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 21.256 (Best: 22.451 @epoch 3)
+Total time: 1.90s
+
+[Epoch 16]	Learning rate: 1.00e-4
+[16/555]	166039.296875	-0.9761565327644348	4.284845635993406e-05	0.16604025661945343	D: 0.25105205178260803	G: 0.279327392578125	2.1+1.2s
+[400/555]	180211.984375	-0.8950414657592773	3.85626990464516e-05	0.1802128404378891	D: 0.25084635615348816	G: 0.2789481282234192	52.7+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.731 (Best: 22.731 @epoch 15)
+Total time: 1.83s
+
+[Epoch 17]	Learning rate: 1.00e-4
+[16/555]	178390.078125	-0.8958345055580139	3.562568235793151e-05	0.17839094996452332	D: 0.2641664147377014	G: 0.14453032612800598	2.1+1.4s
+[400/555]	153338.515625	-0.9086393713951111	4.560387969831936e-05	0.15333940088748932	D: 0.2639036774635315	G: 0.14582739770412445	52.0+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 21.852 (Best: 22.731 @epoch 15)
+Total time: 1.85s
+
+[Epoch 18]	Learning rate: 1.00e-4
+[16/555]	157805.703125	-0.9069719314575195	4.026763781439513e-05	0.15780657529830933	D: 0.25068795680999756	G: 0.27975690364837646	2.1+1.3s
+[400/555]	130704.78125	-0.955181360244751	3.670258229249157e-05	0.13070571422576904	D: 0.2508693337440491	G: 0.2781168818473816	52.6+1.2s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.928 (Best: 22.928 @epoch 17)
+Total time: 1.81s
+
+[Epoch 19]	Learning rate: 1.00e-4
+[16/555]	185561.359375	-0.9413197636604309	4.3184019887121394e-05	0.18556228280067444	D: 0.25825077295303345	G: 0.17265459895133972	2.1+1.3s
+[400/555]	159546.8125	-0.9113823771476746	4.590111711877398e-05	0.15954770147800446	D: 0.25778740644454956	G: 0.17205609381198883	52.1+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.953 (Best: 22.953 @epoch 18)
+Total time: 1.84s
+
+[Epoch 20]	Learning rate: 1.00e-4
+[16/555]	168441.296875	-0.9271972179412842	4.847416130360216e-05	0.16844220459461212	D: 0.2505902051925659	G: 0.22210609912872314	2.0+1.2s
+[400/555]	141993.625	-0.9415978193283081	3.835376264760271e-05	0.14199455082416534	D: 0.2511439323425293	G: 0.2208285629749298	51.8+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.009 (Best: 22.953 @epoch 18)
+Total time: 1.85s
+
+[Epoch 21]	Learning rate: 1.00e-4
+[16/555]	159094.484375	-0.9801074862480164	4.2093684896826744e-05	0.15909543633460999	D: 0.25032106041908264	G: 0.2734467089176178	2.1+1.2s
+[400/555]	156662.484375	-0.9700570702552795	5.249916284810752e-05	0.1566634178161621	D: 0.25108855962753296	G: 0.2732814848423004	52.0+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 21.968 (Best: 22.953 @epoch 18)
+Total time: 1.82s
+
+[Epoch 22]	Learning rate: 1.00e-4
+[16/555]	146280.671875	-0.9559160470962524	4.070395516464487e-05	0.14628161489963531	D: 0.25007298588752747	G: 0.24930067360401154	2.1+1.2s
+[400/555]	134588.765625	-0.9668194651603699	3.714703052537516e-05	0.13458970189094543	D: 0.25056183338165283	G: 0.2507905960083008	51.9+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 20.585 (Best: 22.953 @epoch 18)
+Total time: 1.77s
+
+[Epoch 23]	Learning rate: 1.00e-4
+[16/555]	247997.984375	-0.9149842262268066	5.462859189719893e-05	0.24799887835979462	D: 0.24999786913394928	G: 0.25694364309310913	2.1+1.2s
+[400/555]	170683.375	-0.9240565896034241	5.136660183779895e-05	0.17068426311016083	D: 0.2503768503665924	G: 0.2566017508506775	51.9+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.005 (Best: 23.005 @epoch 22)
+Total time: 1.86s
+
+[Epoch 24]	Learning rate: 1.00e-4
+[16/555]	136221.96875	-0.9308801889419556	4.2768144339788705e-05	0.13622286915779114	D: 0.252672404050827	G: 0.31276175379753113	2.1+1.3s
+[400/555]	158509.109375	-0.9366362690925598	4.473323861020617e-05	0.1585100144147873	D: 0.25313302874565125	G: 0.31275802850723267	51.7+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.927 (Best: 23.005 @epoch 22)
+Total time: 1.84s
+
+[Epoch 25]	Learning rate: 1.00e-4
+[16/555]	231888.328125	-0.9447855353355408	4.526908014668152e-05	0.2318892478942871	D: 0.250635027885437	G: 0.2557297945022583	2.1+1.2s
+[400/555]	146543.046875	-0.9366587400436401	4.9018406571121886e-05	0.146543949842453	D: 0.2502734065055847	G: 0.25526899099349976	51.9+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.920 (Best: 23.005 @epoch 22)
+Total time: 1.83s
+
+[Epoch 26]	Learning rate: 1.00e-4
+[16/555]	157188.65625	-0.9080747365951538	3.624246164690703e-05	0.1571895331144333	D: 0.25261756777763367	G: 0.3006715178489685	2.1+1.2s
+[400/555]	135163.765625	-0.8987410664558411	3.7868201616220176e-05	0.13516463339328766	D: 0.25237494707107544	G: 0.2993723154067993	52.2+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.076 (Best: 23.076 @epoch 25)
+Total time: 1.82s
+
+[Epoch 27]	Learning rate: 1.00e-4
+[16/555]	195528.265625	-0.9207292795181274	3.6156332498649135e-05	0.19552917778491974	D: 0.25479745864868164	G: 0.1855163276195526	2.1+1.2s
+[400/555]	176505.65625	-0.9638277292251587	4.2690702684922144e-05	0.17650659382343292	D: 0.2545374631881714	G: 0.18610966205596924	52.1+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.574 (Best: 23.076 @epoch 25)
+Total time: 1.83s
+
+[Epoch 28]	Learning rate: 1.00e-4
+[16/555]	172720.40625	-0.972159206867218	4.682592407334596e-05	0.17272134125232697	D: 0.2538295090198517	G: 0.31451982259750366	2.1+1.3s
+[400/555]	137236.125	-0.9304971694946289	3.693502731039189e-05	0.13723702728748322	D: 0.25370341539382935	G: 0.3171044588088989	51.8+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.741 (Best: 23.076 @epoch 25)
+Total time: 1.81s
+
+[Epoch 29]	Learning rate: 1.00e-4
+[16/555]	164526.984375	-0.9224666953086853	4.741364318761043e-05	0.16452787816524506	D: 0.25004813075065613	G: 0.26372385025024414	2.1+1.2s
+[400/555]	140109.953125	-0.9292749166488647	4.2319610656704754e-05	0.14011086523532867	D: 0.2503277063369751	G: 0.26537930965423584	51.9+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.894 (Best: 23.076 @epoch 25)
+Total time: 1.84s
+
+[Epoch 30]	Learning rate: 1.00e-4
+[16/555]	124755.734375	-0.9420494437217712	3.301685137557797e-05	0.12475664913654327	D: 0.2538736164569855	G: 0.31458601355552673	2.1+1.2s
+[400/555]	155333.703125	-0.9491724967956543	3.301746619399637e-05	0.15533462166786194	D: 0.25382283329963684	G: 0.31480470299720764	51.9+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.252 (Best: 23.252 @epoch 29)
+Total time: 1.85s
+
+[Epoch 31]	Learning rate: 1.00e-4
+[16/555]	162888.6875	-0.9687750339508057	4.29936008004006e-05	0.16288962960243225	D: 0.25529760122299194	G: 0.326596736907959	2.1+1.3s
+[400/555]	184218.078125	-0.9322497248649597	4.931593139190227e-05	0.18421898782253265	D: 0.25456857681274414	G: 0.3265154957771301	51.8+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.290 (Best: 23.252 @epoch 29)
+Total time: 1.82s
+
+[Epoch 32]	Learning rate: 1.00e-4
+[16/555]	146665.078125	-0.932083785533905	4.0706821891944855e-05	0.14666599035263062	D: 0.2508181631565094	G: 0.23852911591529846	2.1+1.2s
+[400/555]	181311.640625	-0.9440050721168518	4.3694250052794814e-05	0.18131256103515625	D: 0.25066542625427246	G: 0.23851075768470764	51.7+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.540 (Best: 23.252 @epoch 29)
+Total time: 1.80s
+
+[Epoch 33]	Learning rate: 1.00e-4
+[16/555]	202639.015625	-0.9273382425308228	4.31900771218352e-05	0.20263992249965668	D: 0.2522781491279602	G: 0.20906005799770355	2.1+1.2s
+[400/555]	194102.25	-0.9311444759368896	3.705319977598265e-05	0.1941031515598297	D: 0.2525734603404999	G: 0.2060510814189911	51.7+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.306 (Best: 23.252 @epoch 29)
+Total time: 1.78s
+
+[Epoch 34]	Learning rate: 1.00e-4
+[16/555]	207559.9375	-0.804632842540741	4.665877349907532e-05	0.2075607180595398	D: 0.25023481249809265	G: 0.2614459693431854	2.1+1.2s
+[400/555]	134515.234375	-0.9432021975517273	3.352746716700494e-05	0.1345161497592926	D: 0.25011390447616577	G: 0.26274096965789795	51.5+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.191 (Best: 23.252 @epoch 29)
+Total time: 1.87s
+
+[Epoch 35]	Learning rate: 1.00e-4
+[16/555]	130267.7265625	-0.9446147680282593	4.265231473254971e-05	0.1302686482667923	D: 0.25271955132484436	G: 0.20419396460056305	2.1+1.2s
+[400/555]	113818.625	-0.947989821434021	2.8195454433443956e-05	0.11381955444812775	D: 0.2521650791168213	G: 0.20441834628582	51.9+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.332 (Best: 23.332 @epoch 34)
+Total time: 1.89s
+
+[Epoch 36]	Learning rate: 1.00e-4
+[16/555]	139537.921875	-0.9194629788398743	4.291502773412503e-05	0.13953882455825806	D: 0.25407180190086365	G: 0.1922842562198639	2.1+1.3s
+[400/555]	145638.359375	-0.921484649181366	4.2976793338311836e-05	0.14563927054405212	D: 0.2540535032749176	G: 0.1911294162273407	51.5+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.347 (Best: 23.347 @epoch 35)
+Total time: 1.81s
+
+[Epoch 37]	Learning rate: 1.00e-4
+[16/555]	155067.09375	-0.9340583086013794	4.2671388655435294e-05	0.15506799519062042	D: 0.2506651282310486	G: 0.23679739236831665	2.1+1.2s
+[400/555]	179143.984375	-0.9211004972457886	4.2628918890841305e-05	0.17914487421512604	D: 0.25036200881004333	G: 0.23639678955078125	51.4+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.175 (Best: 23.347 @epoch 35)
+Total time: 1.84s
+
+[Epoch 38]	Learning rate: 1.00e-4
+[16/555]	165949.0	-0.8794943690299988	4.735258698929101e-05	0.16594985127449036	D: 0.25202476978302	G: 0.29014134407043457	2.1+1.2s
+[400/555]	179274.390625	-0.9383063316345215	4.635470759239979e-05	0.1792752891778946	D: 0.25125277042388916	G: 0.2903953194618225	51.8+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.628 (Best: 23.628 @epoch 37)
+Total time: 1.86s
+
+[Epoch 39]	Learning rate: 1.00e-4
+[16/555]	129717.609375	-0.9255951642990112	3.878870847984217e-05	0.12971851229667664	D: 0.2547778785228729	G: 0.18671178817749023	2.1+1.2s
+[400/555]	168360.625	-0.9199394583702087	4.7158380766632035e-05	0.16836152970790863	D: 0.2545984089374542	G: 0.18746960163116455	52.0+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.102 (Best: 23.628 @epoch 37)
+Total time: 1.86s
+
+[Epoch 40]	Learning rate: 1.00e-4
+[16/555]	150083.5	-0.9266470074653625	3.959834066336043e-05	0.15008439123630524	D: 0.25189104676246643	G: 0.29779767990112305	2.1+1.3s
+[400/555]	144759.46875	-0.9378324747085571	4.018425534013659e-05	0.1447603702545166	D: 0.25163406133651733	G: 0.29581218957901	51.9+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.430 (Best: 23.628 @epoch 37)
+Total time: 1.79s
+
+[Epoch 41]	Learning rate: 1.00e-4
+[16/555]	181240.46875	-0.9412601590156555	4.213373540551402e-05	0.18124139308929443	D: 0.2516084313392639	G: 0.2231302559375763	2.1+1.2s
+[400/555]	151982.234375	-0.9661670923233032	3.3048643672373146e-05	0.15198317170143127	D: 0.25115758180618286	G: 0.22118785977363586	51.6+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.032 (Best: 23.628 @epoch 37)
+Total time: 1.82s
+
+[Epoch 42]	Learning rate: 1.00e-4
+[16/555]	113936.8515625	-0.9951030015945435	4.505206743488088e-05	0.11393782496452332	D: 0.25426551699638367	G: 0.1893591582775116	2.2+1.2s
+[400/555]	131597.53125	-0.9949476718902588	4.298007843317464e-05	0.13159850239753723	D: 0.25424596667289734	G: 0.18958847224712372	51.6+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.785 (Best: 23.785 @epoch 41)
+Total time: 1.86s
+
+[Epoch 43]	Learning rate: 1.00e-4
+[16/555]	118105.09375	-0.9579558968544006	4.502834053710103e-05	0.11810602992773056	D: 0.2523464858531952	G: 0.21002376079559326	2.1+1.2s
+[400/555]	159825.234375	-0.9681842923164368	5.165435868548229e-05	0.15982618927955627	D: 0.2518922686576843	G: 0.21210965514183044	51.7+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.316 (Best: 23.785 @epoch 41)
+Total time: 1.80s
+
+[Epoch 44]	Learning rate: 1.00e-4
+[16/555]	141096.0625	-0.9285162687301636	3.966001531807706e-05	0.14109696447849274	D: 0.2506576478481293	G: 0.27609461545944214	2.1+1.3s
+[400/555]	139219.859375	-0.9561734795570374	3.879988071275875e-05	0.13922077417373657	D: 0.2507133185863495	G: 0.2772876024246216	52.1+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.828 (Best: 23.828 @epoch 43)
+Total time: 1.84s
+
+[Epoch 45]	Learning rate: 1.00e-4
+[16/555]	170536.90625	-0.933981716632843	4.660923877963796e-05	0.1705378144979477	D: 0.2533624768257141	G: 0.3021032512187958	2.1+1.2s
+[400/555]	167987.15625	-0.9350807666778564	3.675006519188173e-05	0.16798806190490723	D: 0.25231122970581055	G: 0.30312931537628174	52.1+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.427 (Best: 23.828 @epoch 43)
+Total time: 1.84s
+
+[Epoch 46]	Learning rate: 1.00e-4
+[16/555]	107425.7421875	-0.9977080225944519	4.9608697736402974e-05	0.107426717877388	D: 0.2525534927845001	G: 0.20942968130111694	2.1+1.3s
+[400/555]	130428.578125	-0.9633548855781555	4.0842394810169935e-05	0.13042952120304108	D: 0.25215086340904236	G: 0.20961204171180725	51.8+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.616 (Best: 23.828 @epoch 43)
+Total time: 1.80s
+
+[Epoch 47]	Learning rate: 1.00e-4
+[16/555]	181223.28125	-0.924197793006897	4.6170207497198135e-05	0.18122418224811554	D: 0.26797303557395935	G: 0.1341199278831482	2.1+1.2s
+[400/555]	146499.9375	-0.9502811431884766	3.952119004679844e-05	0.1465008705854416	D: 0.26728555560112	G: 0.1376791000366211	52.0+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.858 (Best: 23.858 @epoch 46)
+Total time: 1.85s
+
+[Epoch 48]	Learning rate: 1.00e-4
+[16/555]	130990.09375	-0.9484819769859314	3.9755399484420195e-05	0.13099102675914764	D: 0.2516990900039673	G: 0.21290117502212524	2.1+1.2s
+[400/555]	140355.65625	-0.9539608955383301	4.6160825149854645e-05	0.14035660028457642	D: 0.25190940499305725	G: 0.2138672173023224	52.2+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.874 (Best: 23.874 @epoch 47)
+Total time: 1.81s
+
+[Epoch 49]	Learning rate: 1.00e-4
+[16/555]	187134.28125	-0.9861224293708801	4.075078322784975e-05	0.187135249376297	D: 0.25356823205947876	G: 0.19766972959041595	2.1+1.2s
+[400/555]	110857.8125	-0.9746814966201782	4.189900209894404e-05	0.11085876822471619	D: 0.25403690338134766	G: 0.19514024257659912	52.4+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.825 (Best: 23.874 @epoch 47)
+Total time: 1.87s
+
+[Epoch 50]	Learning rate: 1.00e-4
+[16/555]	125330.421875	-0.9490304589271545	3.604913945309818e-05	0.1253313422203064	D: 0.25076818466186523	G: 0.25566989183425903	2.1+1.2s
+[400/555]	111855.0078125	-1.011366605758667	3.7236110074445605e-05	0.11185599118471146	D: 0.2500806748867035	G: 0.25732147693634033	51.7+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.968 (Best: 23.968 @epoch 49)
+Total time: 1.85s
+
+[Epoch 51]	Learning rate: 1.00e-4
+[16/555]	144731.03125	-0.9677690267562866	3.466694033704698e-05	0.14473196864128113	D: 0.2525534927845001	G: 0.2981853783130646	2.1+1.2s
+[400/555]	175198.015625	-0.9639672040939331	3.767428279388696e-05	0.17519895732402802	D: 0.25231435894966125	G: 0.29802972078323364	51.0+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.149 (Best: 24.149 @epoch 50)
+Total time: 1.82s
+
+[Epoch 52]	Learning rate: 1.00e-4
+[16/555]	127980.40625	-0.9717168807983398	3.348565587657504e-05	0.12798134982585907	D: 0.25183993577957153	G: 0.29614973068237305	2.0+1.2s
+[400/555]	149451.71875	-0.9849278926849365	4.395597716211341e-05	0.14945267140865326	D: 0.2514757513999939	G: 0.29574352502822876	51.2+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.621 (Best: 24.149 @epoch 50)
+Total time: 1.81s
+
+[Epoch 53]	Learning rate: 1.00e-4
+[16/555]	147738.59375	-0.9746783971786499	4.7979996452340856e-05	0.14773954451084137	D: 0.25043076276779175	G: 0.23328042030334473	2.1+1.2s
+[400/555]	131314.96875	-0.977759063243866	4.260285277268849e-05	0.1313159167766571	D: 0.2503845989704132	G: 0.2327364832162857	50.5+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.213 (Best: 24.213 @epoch 52)
+Total time: 1.89s
+
+[Epoch 54]	Learning rate: 1.00e-4
+[16/555]	109276.953125	-1.0109195709228516	3.844617458526045e-05	0.10927794128656387	D: 0.25130802392959595	G: 0.287553071975708	2.0+1.2s
+[400/555]	142669.9375	-0.9815601706504822	4.8763486120151356e-05	0.1426708847284317	D: 0.25085780024528503	G: 0.2859041094779968	51.5+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.394 (Best: 24.394 @epoch 53)
+Total time: 1.82s
+
+[Epoch 55]	Learning rate: 1.00e-4
+[16/555]	132061.28125	-0.9639104604721069	3.5050710721407086e-05	0.13206221163272858	D: 0.25241607427597046	G: 0.3037009537220001	2.1+1.3s
+[400/555]	139908.625	-0.9667274951934814	4.42039490735624e-05	0.139909565448761	D: 0.25204285979270935	G: 0.3019835948944092	51.1+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.618 (Best: 24.394 @epoch 53)
+Total time: 1.83s
+
+[Epoch 56]	Learning rate: 1.00e-4
+[16/555]	133120.640625	-0.9798129796981812	3.979713437729515e-05	0.13312159478664398	D: 0.2505180537700653	G: 0.24810852110385895	2.0+1.2s
+[400/555]	194653.65625	-0.9141641855239868	3.9646794903092086e-05	0.19465455412864685	D: 0.2501218616962433	G: 0.24722126126289368	50.8+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.105 (Best: 24.394 @epoch 53)
+Total time: 1.77s
+
+[Epoch 57]	Learning rate: 1.00e-4
+[16/555]	116962.3359375	-0.9759162664413452	3.8178201066330075e-05	0.11696328967809677	D: 0.2504376769065857	G: 0.22460860013961792	2.0+1.2s
+[400/555]	122521.21875	-0.9618333578109741	4.208489554002881e-05	0.12252215296030045	D: 0.25047025084495544	G: 0.22550806403160095	52.1+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.730 (Best: 24.394 @epoch 53)
+Total time: 1.76s
+
+[Epoch 58]	Learning rate: 1.00e-4
+[16/555]	132235.265625	-0.9567358493804932	4.2349780414951965e-05	0.13223619759082794	D: 0.2501521110534668	G: 0.2472783476114273	2.1+1.2s
+[400/555]	178840.328125	-0.9385098218917847	4.4014868763042614e-05	0.178841233253479	D: 0.24961286783218384	G: 0.24578475952148438	50.6+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.588 (Best: 24.394 @epoch 53)
+Total time: 1.83s
+
+[Epoch 59]	Learning rate: 1.00e-4
+[16/555]	162081.640625	-0.948983371257782	3.9758953789714724e-05	0.16208256781101227	D: 0.25489258766174316	G: 0.3223864734172821	2.1+1.2s
+[400/555]	127119.0546875	-0.9518863558769226	4.41908159700688e-05	0.1271199733018875	D: 0.2543649673461914	G: 0.3218126893043518	51.5+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.064 (Best: 24.394 @epoch 53)
+Total time: 1.82s
+
+[Epoch 60]	Learning rate: 1.00e-4
+[16/555]	155784.96875	-0.9161275029182434	4.0862858440959826e-05	0.15578584372997284	D: 0.2622887194156647	G: 0.3773142695426941	2.1+1.2s
+[400/555]	147410.890625	-0.948297917842865	4.3003663449781016e-05	0.1474117934703827	D: 0.26211267709732056	G: 0.376720666885376	50.6+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.000 (Best: 24.394 @epoch 53)
+Total time: 1.82s
+
+[Epoch 61]	Learning rate: 1.00e-4
+[16/555]	139534.703125	-0.9813429713249207	4.503188392845914e-05	0.13953565061092377	D: 0.25707298517227173	G: 0.32928696274757385	2.1+1.2s
+[400/555]	155769.390625	-0.8969877362251282	3.813887815340422e-05	0.15577024221420288	D: 0.255676805973053	G: 0.32856446504592896	51.6+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.935 (Best: 24.394 @epoch 53)
+Total time: 1.81s
+
+[Epoch 62]	Learning rate: 1.00e-4
+[16/555]	140460.984375	-0.9190807342529297	4.694005838246085e-05	0.14046189188957214	D: 0.2536812424659729	G: 0.19578403234481812	2.1+1.3s
+[400/555]	103782.4453125	-0.9921353459358215	4.319699655752629e-05	0.10378341376781464	D: 0.2536613643169403	G: 0.1985858529806137	50.6+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.144 (Best: 24.394 @epoch 53)
+Total time: 1.81s
+
+[Epoch 63]	Learning rate: 1.00e-4
+[16/555]	103643.1875	-1.0067715644836426	3.595315865823068e-05	0.10364416986703873	D: 0.250257670879364	G: 0.2526788115501404	2.1+1.3s
+[400/555]	129932.4296875	-0.9968526363372803	3.80612509616185e-05	0.1299334019422531	D: 0.2502635717391968	G: 0.2538052201271057	50.8+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.927 (Best: 24.394 @epoch 53)
+Total time: 1.75s
+
+[Epoch 64]	Learning rate: 1.00e-4
+[16/555]	151867.046875	-0.9185455441474915	3.5498294892022386e-05	0.15186795592308044	D: 0.25575774908065796	G: 0.18010243773460388	2.0+1.3s
+[400/555]	117695.921875	-0.9958179593086243	3.909468432539143e-05	0.11769689619541168	D: 0.25597673654556274	G: 0.1811920553445816	50.7+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.438 (Best: 24.438 @epoch 63)
+Total time: 1.82s
+
+[Epoch 65]	Learning rate: 1.00e-4
+[16/555]	168725.546875	-0.9602639079093933	4.9151116400025785e-05	0.16872648894786835	D: 0.2580786645412445	G: 0.1708436906337738	2.0+1.2s
+[400/555]	117592.6171875	-0.9947709441184998	4.11376022384502e-05	0.11759359389543533	D: 0.2577670216560364	G: 0.171112060546875	50.8+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.383 (Best: 24.438 @epoch 63)
+Total time: 1.81s
+
+[Epoch 66]	Learning rate: 1.00e-4
+[16/555]	133987.515625	-0.9530280232429504	3.9237689634319395e-05	0.13398844003677368	D: 0.25647807121276855	G: 0.332187294960022	2.1+1.2s
+[400/555]	152338.1875	-0.9558325409889221	3.2763939088908955e-05	0.1523391157388687	D: 0.25567543506622314	G: 0.33028507232666016	50.9+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.154 (Best: 24.438 @epoch 63)
+Total time: 1.81s
+
+[Epoch 67]	Learning rate: 1.00e-4
+[16/555]	136021.78125	-0.949557363986969	4.184479621471837e-05	0.13602270185947418	D: 0.2511674165725708	G: 0.22546781599521637	2.1+1.3s
+[400/555]	156171.71875	-0.9703343510627747	4.8825106205185875e-05	0.15617267787456512	D: 0.25094786286354065	G: 0.22486452758312225	50.5+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.937 (Best: 24.438 @epoch 63)
+Total time: 1.81s
+
+[Epoch 68]	Learning rate: 1.00e-4
+[16/555]	169525.421875	-1.005053997039795	4.835103754885495e-05	0.16952641308307648	D: 0.25050991773605347	G: 0.23190024495124817	2.0+1.2s
+[400/555]	167828.515625	-0.9391369223594666	3.582338831620291e-05	0.16782943904399872	D: 0.25075966119766235	G: 0.23263394832611084	51.5+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.156 (Best: 24.438 @epoch 63)
+Total time: 1.81s
+
+[Epoch 69]	Learning rate: 1.00e-4
+[16/555]	144222.609375	-0.9593003392219543	3.9684488001512364e-05	0.14422354102134705	D: 0.2552499771118164	G: 0.18056175112724304	2.1+1.3s
+[400/555]	128592.375	-0.996388852596283	3.383668445167132e-05	0.1285933554172516	D: 0.2560262680053711	G: 0.1809508204460144	50.8+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.709 (Best: 24.438 @epoch 63)
+Total time: 1.77s
+
+[Epoch 70]	Learning rate: 1.00e-4
+[16/555]	111647.0546875	-0.9483718872070312	3.565802762750536e-05	0.11164798587560654	D: 0.2521559000015259	G: 0.217611625790596	2.0+1.2s
+[400/555]	107017.7578125	-0.9591031074523926	2.766149009403307e-05	0.10701869428157806	D: 0.25166019797325134	G: 0.2164565771818161	51.9+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.616 (Best: 24.616 @epoch 69)
+Total time: 1.82s
+
+[Epoch 71]	Learning rate: 1.00e-4
+[16/555]	171178.390625	-0.9736591577529907	4.7090921725612134e-05	0.17117933928966522	D: 0.2527320384979248	G: 0.2025860995054245	2.0+1.2s
+[400/555]	166991.859375	-0.9786323308944702	4.289820572012104e-05	0.16699281334877014	D: 0.25251835584640503	G: 0.20376338064670563	51.1+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.767 (Best: 24.616 @epoch 69)
+Total time: 1.81s
+
+[Epoch 72]	Learning rate: 1.00e-4
+[16/555]	138012.953125	-0.9697906970977783	4.357663419796154e-05	0.13801388442516327	D: 0.25142911076545715	G: 0.28000301122665405	2.0+1.2s
+[400/555]	205194.734375	-0.9436314105987549	5.247356602922082e-05	0.20519565045833588	D: 0.25072067975997925	G: 0.277861624956131	51.0+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.419 (Best: 24.616 @epoch 69)
+Total time: 1.91s
+
+[Epoch 73]	Learning rate: 1.00e-4
+[16/555]	155690.4375	-0.9188588857650757	3.9729657146381214e-05	0.15569132566452026	D: 0.2506885826587677	G: 0.27158188819885254	2.1+1.3s
+[400/555]	107403.9140625	-1.021190881729126	3.4881064493674785e-05	0.10740490257740021	D: 0.25102999806404114	G: 0.2729673385620117	51.0+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.809 (Best: 24.809 @epoch 72)
+Total time: 1.82s
+
+[Epoch 74]	Learning rate: 1.00e-4
+[16/555]	146485.171875	-0.9915646314620972	4.274098319001496e-05	0.14648614823818207	D: 0.25054532289505005	G: 0.25705254077911377	2.1+1.3s
+[400/555]	144624.328125	-0.9591529369354248	3.0279861675808206e-05	0.14462526142597198	D: 0.2502893805503845	G: 0.25763964653015137	51.8+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.209 (Best: 24.809 @epoch 72)
+Total time: 1.79s
+
+[Epoch 75]	Learning rate: 1.00e-4
+[16/555]	153876.71875	-1.030882477760315	4.6649878640891984e-05	0.15387772023677826	D: 0.2504633665084839	G: 0.2375195473432541	2.1+1.2s
+[400/555]	143526.421875	-0.9963695406913757	4.618996899807826e-05	0.14352738857269287	D: 0.2503209710121155	G: 0.23550185561180115	50.9+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.475 (Best: 24.809 @epoch 72)
+Total time: 1.80s
+
+[Epoch 76]	Learning rate: 1.00e-4
+[16/555]	156491.46875	-0.9667309522628784	4.8997917474480346e-05	0.1564924120903015	D: 0.2505015730857849	G: 0.24606657028198242	2.1+1.2s
+[400/555]	181031.734375	-0.983703076839447	3.4299446269869804e-05	0.1810326874256134	D: 0.2501096725463867	G: 0.24576981365680695	51.0+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 22.766 (Best: 24.809 @epoch 72)
+Total time: 1.78s
+
+[Epoch 77]	Learning rate: 1.00e-4
+[16/555]	223555.875	-0.9935727119445801	4.4721677113557234e-05	0.22355684638023376	D: 0.2536701560020447	G: 0.31394070386886597	2.0+1.2s
+[400/555]	142400.4375	-0.9729272127151489	3.9606653444934636e-05	0.14240136742591858	D: 0.25363683700561523	G: 0.3149970471858978	50.8+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.140 (Best: 24.809 @epoch 72)
+Total time: 1.83s
+
+[Epoch 78]	Learning rate: 1.00e-4
+[16/555]	128329.0625	-0.953152596950531	3.526738873915747e-05	0.12832999229431152	D: 0.2529109716415405	G: 0.20158345997333527	2.0+1.3s
+[400/555]	124497.265625	-0.9848161935806274	3.5153385397279635e-05	0.12449823319911957	D: 0.2531055212020874	G: 0.19908462464809418	51.6+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.729 (Best: 24.809 @epoch 72)
+Total time: 1.83s
+
+[Epoch 79]	Learning rate: 1.00e-4
+[16/555]	142905.625	-0.9397072792053223	4.576458013616502e-05	0.1429065465927124	D: 0.25298011302948	G: 0.20535141229629517	2.0+1.2s
+[400/555]	138463.53125	-0.975336492061615	4.6801585995126516e-05	0.13846448063850403	D: 0.25233474373817444	G: 0.20482289791107178	50.6+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.352 (Best: 24.809 @epoch 72)
+Total time: 1.79s
+
+[Epoch 80]	Learning rate: 1.00e-4
+[16/555]	182276.578125	-0.9627839922904968	3.9443439163733274e-05	0.18227750062942505	D: 0.25988465547561646	G: 0.3583049774169922	2.1+1.2s
+[400/555]	100293.265625	-0.9968114495277405	3.394331724848598e-05	0.10029422491788864	D: 0.2591853439807892	G: 0.3581584095954895	50.7+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.488 (Best: 24.809 @epoch 72)
+Total time: 1.83s
+
+[Epoch 81]	Learning rate: 1.00e-4
+[16/555]	118410.59375	-0.9976442456245422	3.676696724141948e-05	0.1184115782380104	D: 0.2617572844028473	G: 0.15415644645690918	2.1+1.3s
+[400/555]	119890.8671875	-0.985066831111908	3.5478406061884016e-05	0.11989183723926544	D: 0.2612445652484894	G: 0.1529565155506134	52.0+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.420 (Best: 24.809 @epoch 72)
+Total time: 1.79s
+
+[Epoch 82]	Learning rate: 1.00e-4
+[16/555]	136333.125	-0.9710184335708618	3.76184907509014e-05	0.13633406162261963	D: 0.25142884254455566	G: 0.2914925813674927	2.1+1.3s
+[400/555]	131745.609375	-0.9939176440238953	3.569874752429314e-05	0.1317465752363205	D: 0.2516454756259918	G: 0.2910570204257965	51.8+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.712 (Best: 24.809 @epoch 72)
+Total time: 1.81s
+
+[Epoch 83]	Learning rate: 1.00e-4
+[16/555]	124733.5703125	-0.9991719126701355	3.265769555582665e-05	0.1247345507144928	D: 0.2510974705219269	G: 0.22334375977516174	2.0+1.2s
+[400/555]	132978.53125	-0.9952682256698608	4.472429282031953e-05	0.13297949731349945	D: 0.2505967617034912	G: 0.22518903017044067	50.7+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.113 (Best: 24.809 @epoch 72)
+Total time: 1.80s
+
+[Epoch 84]	Learning rate: 1.00e-4
+[16/555]	137999.515625	-1.010354995727539	4.58098147646524e-05	0.1380005031824112	D: 0.251316636800766	G: 0.21887385845184326	2.0+1.2s
+[400/555]	140115.265625	-0.9904111623764038	3.972745253122412e-05	0.14011622965335846	D: 0.25130006670951843	G: 0.2193862795829773	50.8+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.192 (Best: 24.809 @epoch 72)
+Total time: 1.78s
+
+[Epoch 85]	Learning rate: 1.00e-4
+[16/555]	114105.53125	-1.0064616203308105	3.8229114579735324e-05	0.11410651355981827	D: 0.2503606975078583	G: 0.2463587373495102	2.0+1.2s
+[400/555]	161296.921875	-0.9772051572799683	3.751193071366288e-05	0.16129787266254425	D: 0.2505062520503998	G: 0.24667346477508545	50.9+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.280 (Best: 24.809 @epoch 72)
+Total time: 1.78s
+
+[Epoch 86]	Learning rate: 1.00e-4
+[16/555]	169797.21875	-1.0070745944976807	4.488639751798473e-05	0.16979819536209106	D: 0.25060951709747314	G: 0.23421403765678406	2.1+1.2s
+[400/555]	134570.234375	-0.9805186986923218	4.321830056142062e-05	0.13457119464874268	D: 0.2507079541683197	G: 0.23495730757713318	50.8+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.577 (Best: 24.809 @epoch 72)
+Total time: 1.83s
+
+[Epoch 87]	Learning rate: 1.00e-4
+[16/555]	127741.2421875	-1.005882740020752	4.4735759729519486e-05	0.1277422159910202	D: 0.25067609548568726	G: 0.27256473898887634	2.1+1.3s
+[400/555]	137779.53125	-0.9656730890274048	3.768899478018284e-05	0.13778047263622284	D: 0.2507311999797821	G: 0.2709657549858093	51.2+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.188 (Best: 24.809 @epoch 72)
+Total time: 1.84s
+
+[Epoch 88]	Learning rate: 1.00e-4
+[16/555]	97290.6484375	-1.0479339361190796	4.230705962982029e-05	0.09729167073965073	D: 0.25145360827445984	G: 0.21507875621318817	2.1+1.3s
+[400/555]	101904.3671875	-0.9750609397888184	3.5715202102437615e-05	0.10190532356500626	D: 0.25141969323158264	G: 0.2151210755109787	50.8+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.653 (Best: 24.809 @epoch 72)
+Total time: 1.82s
+
+[Epoch 89]	Learning rate: 1.00e-4
+[16/555]	116239.1953125	-0.9887189865112305	4.4055970647605136e-05	0.11624016612768173	D: 0.2579279839992523	G: 0.17059683799743652	2.1+1.3s
+[400/555]	160780.21875	-0.9527638554573059	4.3400636059232056e-05	0.1607811599969864	D: 0.25812727212905884	G: 0.16930171847343445	52.4+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.631 (Best: 24.809 @epoch 72)
+Total time: 1.84s
+
+[Epoch 90]	Learning rate: 1.00e-4
+[16/555]	116473.03125	-1.005563497543335	3.916768037015572e-05	0.11647401750087738	D: 0.2526256740093231	G: 0.21233569085597992	2.1+1.4s
+[400/555]	166989.015625	-0.979496419429779	3.779708640649915e-05	0.16698996722698212	D: 0.25234246253967285	G: 0.21136613190174103	51.8+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.964 (Best: 24.809 @epoch 72)
+Total time: 1.80s
+
+[Epoch 91]	Learning rate: 1.00e-4
+[16/555]	108521.125	-1.0030691623687744	2.926556408056058e-05	0.10852210223674774	D: 0.2509360611438751	G: 0.22900870442390442	2.2+1.3s
+[400/555]	180511.0	-1.0079110860824585	4.527818236965686e-05	0.1805119812488556	D: 0.2506367862224579	G: 0.22733986377716064	52.2+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.403 (Best: 24.809 @epoch 72)
+Total time: 1.80s
+
+[Epoch 92]	Learning rate: 1.00e-4
+[16/555]	178316.625	-0.9848904609680176	4.14762798754964e-05	0.178317591547966	D: 0.251167356967926	G: 0.22445714473724365	2.1+1.3s
+[400/555]	138376.25	-0.9911832809448242	4.620847539626993e-05	0.13837721943855286	D: 0.2508666515350342	G: 0.2234228402376175	51.5+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.702 (Best: 24.809 @epoch 72)
+Total time: 1.80s
+
+[Epoch 93]	Learning rate: 1.00e-4
+[16/555]	99279.2890625	-0.9989439249038696	3.656969056464732e-05	0.09928026795387268	D: 0.2514711916446686	G: 0.21370401978492737	2.1+1.3s
+[400/555]	137447.015625	-0.9904926419258118	3.610992644098587e-05	0.13744798302650452	D: 0.2518600821495056	G: 0.21479225158691406	51.5+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.381 (Best: 24.809 @epoch 72)
+Total time: 1.83s
+
+[Epoch 94]	Learning rate: 1.00e-4
+[16/555]	112576.078125	-1.0045963525772095	3.6135807022219524e-05	0.11257707327604294	D: 0.2678014636039734	G: 0.13595981895923615	2.1+1.2s
+[400/555]	103204.8046875	-0.9618549346923828	3.759698665817268e-05	0.10320574790239334	D: 0.26776930689811707	G: 0.13635113835334778	50.7+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.306 (Best: 24.809 @epoch 72)
+Total time: 1.81s
+
+[Epoch 95]	Learning rate: 1.00e-4
+[16/555]	131261.4375	-0.9681826233863831	3.433880920056254e-05	0.1312623918056488	D: 0.2511748671531677	G: 0.21788619458675385	2.1+1.4s
+[400/555]	118195.4921875	-0.9951688051223755	4.12256813433487e-05	0.11819646507501602	D: 0.251803457736969	G: 0.21764522790908813	50.8+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.151 (Best: 24.809 @epoch 72)
+Total time: 1.83s
+
+[Epoch 96]	Learning rate: 1.00e-4
+[16/555]	160394.125	-0.972237229347229	3.902261232724413e-05	0.160395085811615	D: 0.25051388144493103	G: 0.24470321834087372	2.1+1.2s
+[400/555]	137219.515625	-0.974463164806366	3.567131352610886e-05	0.13722047209739685	D: 0.25048381090164185	G: 0.24620838463306427	51.2+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.316 (Best: 24.809 @epoch 72)
+Total time: 1.87s
+
+[Epoch 97]	Learning rate: 1.00e-4
+[16/555]	164007.203125	-0.9238394498825073	3.721074608620256e-05	0.16400811076164246	D: 0.2520540952682495	G: 0.20602160692214966	2.1+1.2s
+[400/555]	168344.125	-0.9861241579055786	3.4767796023515984e-05	0.16834509372711182	D: 0.2519642114639282	G: 0.20753315091133118	53.3+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 23.478 (Best: 24.809 @epoch 72)
+Total time: 1.84s
+
+[Epoch 98]	Learning rate: 1.00e-4
+[16/555]	123000.5859375	-1.0015789270401	3.8033034797990695e-05	0.12300156056880951	D: 0.2506176233291626	G: 0.2739219069480896	2.0+1.3s
+[400/555]	163562.25	-0.9726582765579224	4.494681707001291e-05	0.16356320679187775	D: 0.2503909468650818	G: 0.2727952003479004	50.8+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.713 (Best: 24.809 @epoch 72)
+Total time: 1.82s
+
+[Epoch 99]	Learning rate: 1.00e-4
+[16/555]	141385.6875	-0.999963104724884	3.869573993142694e-05	0.14138667285442352	D: 0.25151175260543823	G: 0.22179733216762543	2.0+1.2s
+[400/555]	159949.15625	-0.9698544144630432	4.0000988519750535e-05	0.1599501073360443	D: 0.2504224181175232	G: 0.2216663807630539	50.7+1.5s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.325 (Best: 24.809 @epoch 72)
+Total time: 1.78s
+
+[Epoch 100]	Learning rate: 1.00e-4
+[16/555]	125265.8671875	-0.9683652520179749	3.7112335121491924e-05	0.12526682019233704	D: 0.2553999125957489	G: 0.1895519196987152	2.1+1.3s
+[400/555]	129985.1796875	-0.9844914078712463	4.288817217457108e-05	0.12998615205287933	D: 0.2554745078086853	G: 0.18856030702590942	52.7+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 24.337 (Best: 24.809 @epoch 72)
+Total time: 1.80s
+

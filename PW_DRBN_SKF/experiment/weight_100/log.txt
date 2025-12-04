@@ -1,0 +1,666 @@
+DRBN(
+  (recur1): DRBN_BU(
+    (SFENet1): Conv2d(6, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (SFENet2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (RDBs): ModuleList(
+      (0-1): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (2-3): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(48, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(64, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(80, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(96, 32, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (4-5): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+    )
+    (UPNet): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet2): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet4): Sequential(
+      (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (Down1): Conv2d(16, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Down2): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Up1): ConvTranspose2d(16, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Up2): ConvTranspose2d(32, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Relu): ReLU()
+    (Img_up): Upsample(scale_factor=2.0, mode='bilinear')
+  )
+  (recur2): DRBN_BU(
+    (SFENet1): Conv2d(6, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (SFENet2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (RDBs): ModuleList(
+      (0-1): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (2-3): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(48, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(64, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(80, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(96, 32, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (4-5): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+    )
+    (UPNet): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet2): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet4): Sequential(
+      (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (Down1): Conv2d(16, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Down2): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Up1): ConvTranspose2d(16, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Up2): ConvTranspose2d(32, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Relu): ReLU()
+    (Img_up): Upsample(scale_factor=2.0, mode='bilinear')
+  )
+  (recur3): DRBN_BU(
+    (SFENet1): Conv2d(6, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (SFENet2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (RDBs): ModuleList(
+      (0-1): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (2-3): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(48, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(64, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(80, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(96, 32, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (4-5): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+    )
+    (UPNet): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet2): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet4): Sequential(
+      (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (Down1): Conv2d(16, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Down2): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Up1): ConvTranspose2d(16, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Up2): ConvTranspose2d(32, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Relu): ReLU()
+    (Img_up): Upsample(scale_factor=2.0, mode='bilinear')
+  )
+  (recur4): DRBN_BU(
+    (SFENet1): Conv2d(6, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (SFENet2): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (RDBs): ModuleList(
+      (0-1): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (2-3): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(48, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(64, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(80, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(96, 32, kernel_size=(1, 1), stride=(1, 1))
+      )
+      (4-5): 2 x RDB(
+        (convs): Sequential(
+          (0): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(16, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (1): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(24, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (2): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(32, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+          (3): RDB_Conv(
+            (conv): Sequential(
+              (0): Conv2d(40, 8, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+              (1): ReLU()
+            )
+          )
+        )
+        (LFF): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      )
+    )
+    (UPNet): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet2): Sequential(
+      (0): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (UPNet4): Sequential(
+      (0): Conv2d(32, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+      (1): Conv2d(16, 3, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    )
+    (Down1): Conv2d(16, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Down2): Conv2d(16, 32, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1))
+    (Up1): ConvTranspose2d(16, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Up2): ConvTranspose2d(32, 16, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+    (Relu): ReLU()
+    (Img_up): Upsample(scale_factor=2.0, mode='bilinear')
+    (fuseblk_1): TransformerBlock(
+      (conv1): Conv2d(96, 32, kernel_size=(1, 1), stride=(1, 1))
+      (norm1): LayerNorm(
+        (body): WithBias_LayerNorm()
+      )
+      (attn): Attention(
+        (kv): Conv2d(32, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (kv_dwconv): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+        (q): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (q_dwconv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (project_out): Conv2d(32, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (norm2): LayerNorm(
+        (body): WithBias_LayerNorm()
+      )
+      (ffn): FeedForward(
+        (gelu): GELU()
+        (project_in): Conv2d(32, 170, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (dwconv): Conv2d(170, 170, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=170, bias=False)
+        (project_out): Conv2d(85, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+    )
+    (fuseblk_2): TransformerBlock(
+      (conv1): Conv2d(48, 16, kernel_size=(1, 1), stride=(1, 1))
+      (norm1): LayerNorm(
+        (body): WithBias_LayerNorm()
+      )
+      (attn): Attention(
+        (kv): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (kv_dwconv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32, bias=False)
+        (q): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (q_dwconv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (project_out): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (norm2): LayerNorm(
+        (body): WithBias_LayerNorm()
+      )
+      (ffn): FeedForward(
+        (gelu): GELU()
+        (project_in): Conv2d(16, 84, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (dwconv): Conv2d(84, 84, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=84, bias=False)
+        (project_out): Conv2d(42, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+    )
+    (fuseblk_3): TransformerBlock(
+      (conv1): Conv2d(59, 16, kernel_size=(1, 1), stride=(1, 1))
+      (norm1): LayerNorm(
+        (body): WithBias_LayerNorm()
+      )
+      (attn): Attention(
+        (kv): Conv2d(16, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (kv_dwconv): Conv2d(32, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=32, bias=False)
+        (q): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (q_dwconv): Conv2d(16, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+        (project_out): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+      (norm2): LayerNorm(
+        (body): WithBias_LayerNorm()
+      )
+      (ffn): FeedForward(
+        (gelu): GELU()
+        (project_in): Conv2d(16, 84, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (dwconv): Conv2d(84, 84, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=84, bias=False)
+        (project_out): Conv2d(42, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+      )
+    )
+  )
+)
+Loading Baseline model from ./baseline_model.pt...
+>>> SUCCESS: Baseline loaded (381 params).
+[Epoch 2]	Learning rate: 1.00e-4
+[16/555]	26.590612411499023	-2.1384496688842773	5.3225463489070535e-05	0.287031352519989	D: 0.2503175735473633	G: 0.2587469816207886	4.2+2.4s
+[400/555]	26.39950180053711	-1.9205601215362549	7.364024349953979e-05	0.28294068574905396	D: 0.24936673045158386	G: 0.2591962516307831	52.0+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 19.084 (Best: 19.084 @epoch 1)
+Total time: 2.46s
+
+[Epoch 3]	Learning rate: 1.00e-4
+[16/555]	29.689210891723633	-1.8590171337127686	6.3281440816354e-05	0.31516027450561523	D: 0.2553252875804901	G: 0.3213686943054199	2.2+1.4s
+[400/555]	40.206485748291016	-1.9809117317199707	5.883846097276546e-05	0.4215514659881592	D: 0.2539862096309662	G: 0.3218959867954254	52.0+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 17.496 (Best: 19.084 @epoch 1)
+Total time: 2.38s
+
+[Epoch 4]	Learning rate: 1.00e-4
+[16/555]	30.677989959716797	-1.8709896802902222	6.0983511502854526e-05	0.3253362774848938	D: 0.26169833540916443	G: 0.152919739484787	2.1+1.3s
+[400/555]	30.485240936279297	-1.8105376958847046	4.993428592570126e-05	0.32280629873275757	D: 0.26135098934173584	G: 0.15099966526031494	52.0+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 18.362 (Best: 19.084 @epoch 1)
+Total time: 2.37s
+
+[Epoch 5]	Learning rate: 1.00e-4
+[16/555]	27.364688873291016	-1.8936673402786255	5.9877591411350295e-05	0.2923874258995056	D: 0.2534077763557434	G: 0.1955403983592987	2.1+1.3s
+[400/555]	25.681106567382812	-1.8873276710510254	5.6243585277115926e-05	0.275488018989563	D: 0.25344082713127136	G: 0.19576111435890198	52.2+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 16.381 (Best: 19.084 @epoch 1)
+Total time: 2.20s
+
+[Epoch 6]	Learning rate: 1.00e-4
+[16/555]	27.509628295898438	-1.8835192918777466	6.636212492594495e-05	0.29373908042907715	D: 0.2529330551624298	G: 0.1917192041873932	2.1+1.2s
+[400/555]	22.951427459716797	-1.9677757024765015	3.7488691305043176e-05	0.2489977478981018	D: 0.25335192680358887	G: 0.19391629099845886	51.9+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 19.885 (Best: 19.885 @epoch 5)
+Total time: 2.37s
+
+[Epoch 7]	Learning rate: 1.00e-4
+[16/555]	16.705955505371094	-1.9357086420059204	5.0851427658926696e-05	0.18609625101089478	D: 0.25424203276634216	G: 0.3198762536048889	2.1+1.3s
+[400/555]	17.351213455200195	-1.9756340980529785	4.809557140106335e-05	0.19294697046279907	D: 0.2537573277950287	G: 0.321024626493454	52.1+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 20.576 (Best: 20.576 @epoch 6)
+Total time: 2.26s
+
+[Epoch 8]	Learning rate: 1.00e-4
+[16/555]	21.635051727294922	-1.9777696132659912	5.055130895925686e-05	0.23595601320266724	D: 0.2568095028400421	G: 0.17167788743972778	2.1+1.2s
+[400/555]	15.350839614868164	-1.9918808937072754	5.167424023966305e-05	0.17325550317764282	D: 0.25771909952163696	G: 0.17118799686431885	52.0+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 20.147 (Best: 20.576 @epoch 6)
+Total time: 2.26s
+
+[Epoch 9]	Learning rate: 1.00e-4
+[16/555]	21.442678451538086	-1.9166460037231445	4.424193684826605e-05	0.23331886529922485	D: 0.2508159279823303	G: 0.2739463746547699	2.1+1.2s
+[400/555]	32.40340042114258	-1.822300672531128	7.397244917228818e-05	0.3419816493988037	D: 0.2498202919960022	G: 0.2746019959449768	52.2+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 9.865 (Best: 20.576 @epoch 6)
+Total time: 2.36s
+
+[Epoch 10]	Learning rate: 1.00e-4
+[16/555]	35.07501983642578	-1.670868158340454	7.664928125450388e-05	0.36710691452026367	D: 0.2580661177635193	G: 0.3511854410171509	2.1+1.3s
+[400/555]	30.474721908569336	-1.7089877128601074	6.330728501779959e-05	0.32148557901382446	D: 0.25851500034332275	G: 0.35086721181869507	51.9+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 19.559 (Best: 20.576 @epoch 6)
+Total time: 2.32s
+
+[Epoch 11]	Learning rate: 1.00e-4
+[16/555]	16.548442840576172	-1.9156062602996826	4.29378378612455e-05	0.18443512916564941	D: 0.2520771622657776	G: 0.20493294298648834	2.1+1.2s
+[400/555]	20.936853408813477	-1.8917264938354492	5.2138904720777646e-05	0.22807812690734863	D: 0.25198766589164734	G: 0.20715588331222534	52.4+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 20.697 (Best: 20.697 @epoch 10)
+Total time: 2.41s
+
+[Epoch 12]	Learning rate: 1.00e-4
+[16/555]	26.75830078125	-1.8241565227508545	4.6436085540335625e-05	0.2854894995689392	D: 0.25614359974861145	G: 0.3346089720726013	2.2+1.3s
+[400/555]	16.532087326049805	-1.872316598892212	6.832876533735543e-05	0.1837102770805359	D: 0.25569626688957214	G: 0.33307749032974243	51.9+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 20.553 (Best: 20.697 @epoch 10)
+Total time: 2.38s
+
+[Epoch 13]	Learning rate: 1.00e-4
+[16/555]	16.274816513061523	-1.889580488204956	4.910325151286088e-05	0.18146198987960815	D: 0.2557466924190521	G: 0.18149682879447937	2.1+1.2s
+[400/555]	19.96236228942871	-1.8456101417541504	5.1354567403905094e-05	0.217898428440094	D: 0.25562819838523865	G: 0.1807834804058075	52.1+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 20.248 (Best: 20.697 @epoch 10)
+Total time: 2.28s
+
+[Epoch 14]	Learning rate: 1.00e-4
+[16/555]	18.37393569946289	-1.9520059823989868	4.66357269033324e-05	0.2030090093612671	D: 0.24992232024669647	G: 0.24994054436683655	2.1+1.3s
+[400/555]	19.706539154052734	-1.886152744293213	4.8103349399752915e-05	0.21567672491073608	D: 0.2502371370792389	G: 0.24970746040344238	52.2+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 20.527 (Best: 20.697 @epoch 10)
+Total time: 2.38s
+
+[Epoch 15]	Learning rate: 1.00e-4
+[16/555]	18.267745971679688	-1.9173171520233154	5.050792242400348e-05	0.2016393542289734	D: 0.2522121071815491	G: 0.21077103912830353	2.1+1.2s
+[400/555]	24.192522048950195	-1.8160687685012817	6.131142436061054e-05	0.25987446308135986	D: 0.2519831657409668	G: 0.21083271503448486	52.2+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 19.303 (Best: 20.697 @epoch 10)
+Total time: 2.33s
+
+[Epoch 16]	Learning rate: 1.00e-4
+[16/555]	17.01820945739746	-1.9098856449127197	4.701183206634596e-05	0.18900007009506226	D: 0.25174224376678467	G: 0.2804119884967804	2.2+1.2s
+[400/555]	24.182472229003906	-1.886960506439209	5.058214446762577e-05	0.260415256023407	D: 0.25094860792160034	G: 0.2785714864730835	52.0+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 20.242 (Best: 20.697 @epoch 10)
+Total time: 2.39s
+
+[Epoch 17]	Learning rate: 1.00e-4
+[16/555]	17.558696746826172	-1.8897671699523926	5.209186929278076e-05	0.19433975219726562	D: 0.26390349864959717	G: 0.14436756074428558	2.1+1.3s
+[400/555]	20.55132484436035	-1.8415886163711548	5.709585821023211e-05	0.2237834930419922	D: 0.26374298334121704	G: 0.14506232738494873	52.2+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 20.713 (Best: 20.713 @epoch 16)
+Total time: 2.36s
+
+[Epoch 18]	Learning rate: 1.00e-4
+[16/555]	21.478031158447266	-1.9468982219696045	5.502302883542143e-05	0.2339690923690796	D: 0.2510570287704468	G: 0.2796461880207062	2.1+1.3s
+[400/555]	19.731632232666016	-1.937676191329956	5.149016942596063e-05	0.21641403436660767	D: 0.251233845949173	G: 0.2785355746746063	52.0+1.3s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 19.628 (Best: 20.713 @epoch 16)
+Total time: 2.30s
+
+[Epoch 19]	Learning rate: 1.00e-4
+[16/555]	21.94110107421875	-1.9007893800735474	6.091454270062968e-05	0.23824572563171387	D: 0.2583372890949249	G: 0.1725548505783081	2.2+1.2s
+[400/555]	21.62987518310547	-1.8058130741119385	5.410574158304371e-05	0.2341822385787964	D: 0.2574142813682556	G: 0.1740947961807251	52.0+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 21.018 (Best: 21.018 @epoch 18)
+Total time: 2.42s
+
+[Epoch 20]	Learning rate: 1.00e-4
+[16/555]	15.723978996276855	-1.97617769241333	4.3418302084319293e-05	0.1767796277999878	D: 0.25040894746780396	G: 0.2214968502521515	2.1+1.2s
+[400/555]	14.20625114440918	-1.8804829120635986	5.438918014988303e-05	0.16064602136611938	D: 0.25068342685699463	G: 0.2207779735326767	52.1+1.4s
+
+Evaluation:
+[LowLightTest x4]	PSNR: 21.183 (Best: 21.183 @epoch 19)
+Total time: 2.30s
+

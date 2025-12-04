@@ -1,0 +1,152 @@
+25-12-03 01:47:02.407 - INFO:   name: test
+  use_tb_logger: True
+  model: video_base4_m
+  distortion: sr
+  scale: 1
+  gpu_ids: [0]
+  seg: True
+  datasets:[
+    train:[
+      name: indoor
+      mode: video_samesize_lol
+      interval_list: [1]
+      random_reverse: False
+      border_mode: False
+      dataroot_GT: ./Portrait_Dataset/train/high
+      dataroot_LQ: ./Portrait_Dataset/train/low
+      train_size: [512, 512]
+      cache_keys: None
+      cache_data: True
+      padding: new_info
+      N_frames: 5
+      use_shuffle: True
+      n_workers: 8
+      batch_size: 16
+      GT_size: 128
+      LQ_size: 128
+      use_flip: True
+      use_rot: True
+      color: RGB
+      phase: train
+      scale: 1
+      data_type: img
+    ]
+    val:[
+      name: REDS4
+      mode: video_samesize_lol
+      dataroot_GT: ./Portrait_Dataset/test/high
+      dataroot_LQ: ./Portrait_Dataset/test/low
+      cache_data: True
+      N_frames: 5
+      padding: new_info
+      train_size: [512, 512]
+      phase: val
+      scale: 1
+      data_type: img
+    ]
+  ]
+  network_G:[
+    which_model_G: low_light_transformer_seg
+    nf: 64
+    nframes: 5
+    groups: 8
+    front_RBs: 1
+    back_RBs: 1
+    predeblur: True
+    HR_in: True
+    w_TSA: True
+    scale: 1
+  ]
+  path:[
+    root: ./
+    pretrain_model_G: None
+    experiments_root: ./experiments/test
+    models: ./experiments/test/models
+    training_state: ./experiments/test/training_state
+    log: ./experiments/test
+    val_images: ./experiments/test/val_images
+  ]
+  train:[
+    manual_seed: 3407
+    lr_G: 0.0001
+    lr_scheme: MultiStepLR
+    beta1: 0.9
+    beta2: 0.99
+    niter: 5250
+    ft_tsa_only: 0
+    warmup_iter: -1
+    lr_steps: [1750, 3500, 4500]
+    lr_gamma: 0.5
+    eta_min: 1e-07
+    pixel_criterion: cb
+    pixel_weight: 1.0
+    val_freq: 35
+    manual.resize960x512_seed: 0
+    use_portrait_loss: True
+    portrait_class_id: 36
+    portrait_loss_weight: 1000000.0
+  ]
+  logger:[
+    print_freq: 35
+    save_checkpoint_freq: 5250.0
+  ]
+  is_train: True
+  dist: False
+
+25-12-03 01:47:02.470 - INFO: Random seed: 3407
+25-12-03 01:47:02.472 - INFO: Dataset [VideoSameSizeDataset - indoor] is created.
+25-12-03 01:47:02.472 - INFO: Number of train images: 185, iters: 12
+25-12-03 01:47:02.472 - INFO: Total epochs needed: 438 for iters 5,250
+25-12-03 01:47:02.473 - INFO: Dataset [VideoSameSizeDataset - REDS4] is created.
+25-12-03 01:47:02.473 - INFO: Number of val images in [REDS4]: 15
+25-12-03 01:47:02.857 - INFO: Network G structure: low_light_transformer_seg, with parameters: 39,449,509
+25-12-03 01:47:02.858 - INFO: Model [VideoBaseModel] is created.
+25-12-03 01:47:04.063 - INFO: Start training from epoch: 0, iter: 0
+25-12-03 01:47:13.240 - INFO: [epoch:  3, iter:      35, lr:(1.000e-04,)] l_pix: 9.9643e+04 
+25-12-03 01:47:20.836 - INFO: # Validation # PSNR: 1.5720e+01:----Best iter:        0 Best PSNR: -1.0000e+00
+25-12-03 01:47:20.837 - INFO: Saving best models
+25-12-03 01:47:29.094 - INFO: [epoch:  6, iter:      70, lr:(1.000e-04,)] l_pix: 8.7159e+04 l_hist: 1.0529e-02 
+25-12-03 01:47:34.910 - INFO: # Validation # PSNR: 1.8435e+01:----Best iter:       35 Best PSNR: 1.5720e+01
+25-12-03 01:47:34.911 - INFO: Saving best models
+25-12-03 01:47:43.708 - INFO: [epoch:  9, iter:     105, lr:(1.000e-04,)] l_pix: 8.7535e+04 l_hist: 1.1369e-02 
+25-12-03 01:47:49.460 - INFO: # Validation # PSNR: 1.8483e+01:----Best iter:       70 Best PSNR: 1.8435e+01
+25-12-03 01:47:49.461 - INFO: Saving best models
+25-12-03 01:47:56.958 - INFO: [epoch: 12, iter:     140, lr:(1.000e-04,)] l_pix: 7.3331e+04 l_hist: 1.1369e-02 
+25-12-03 01:48:02.593 - INFO: # Validation # PSNR: 1.9404e+01:----Best iter:      105 Best PSNR: 1.8483e+01
+25-12-03 01:48:02.595 - INFO: Saving best models
+25-12-03 01:48:11.297 - INFO: [epoch: 15, iter:     175, lr:(1.000e-04,)] l_pix: 5.8510e+04 l_hist: 1.0650e-02 
+25-12-03 01:48:17.076 - INFO: # Validation # PSNR: 1.9460e+01:----Best iter:      140 Best PSNR: 1.9404e+01
+25-12-03 01:48:17.078 - INFO: Saving best models
+25-12-03 01:48:26.056 - INFO: [epoch: 19, iter:     210, lr:(1.000e-04,)] l_pix: 7.1406e+04 l_hist: 1.0348e-02 
+25-12-03 01:48:31.802 - INFO: # Validation # PSNR: 1.9970e+01:----Best iter:      175 Best PSNR: 1.9460e+01
+25-12-03 01:48:31.804 - INFO: Saving best models
+25-12-03 01:48:39.251 - INFO: [epoch: 22, iter:     245, lr:(1.000e-04,)] l_pix: 5.7817e+04 l_hist: 1.0348e-02 
+25-12-03 01:48:44.944 - INFO: # Validation # PSNR: 2.0202e+01:----Best iter:      210 Best PSNR: 1.9970e+01
+25-12-03 01:48:44.945 - INFO: Saving best models
+25-12-03 01:48:53.580 - INFO: [epoch: 25, iter:     280, lr:(1.000e-04,)] l_pix: 5.8200e+04 l_hist: 9.5488e-03 
+25-12-03 01:48:59.373 - INFO: # Validation # PSNR: 2.0571e+01:----Best iter:      245 Best PSNR: 2.0202e+01
+25-12-03 01:48:59.374 - INFO: Saving best models
+25-12-03 01:49:08.032 - INFO: [epoch: 28, iter:     315, lr:(1.000e-04,)] l_pix: 5.8342e+04 l_hist: 1.1724e-02 
+25-12-03 01:49:13.884 - INFO: # Validation # PSNR: 2.0608e+01:----Best iter:      280 Best PSNR: 2.0571e+01
+25-12-03 01:49:13.886 - INFO: Saving best models
+25-12-03 01:49:22.281 - INFO: [epoch: 31, iter:     350, lr:(1.000e-04,)] l_pix: 5.1688e+04 l_hist: 8.4325e-03 
+25-12-03 01:49:28.142 - INFO: # Validation # PSNR: 2.0832e+01:----Best iter:      315 Best PSNR: 2.0608e+01
+25-12-03 01:49:28.144 - INFO: Saving best models
+25-12-03 01:49:35.509 - INFO: [epoch: 34, iter:     385, lr:(1.000e-04,)] l_pix: 7.3881e+04 l_hist: 8.4325e-03 
+25-12-03 01:49:41.192 - INFO: # Validation # PSNR: 1.9595e+01:----Best iter:      350 Best PSNR: 2.0832e+01
+25-12-03 01:49:50.017 - INFO: [epoch: 38, iter:     420, lr:(1.000e-04,)] l_pix: 5.2984e+04 l_hist: 1.2780e-02 
+25-12-03 01:49:55.803 - INFO: # Validation # PSNR: 2.0965e+01:----Best iter:      350 Best PSNR: 2.0832e+01
+25-12-03 01:49:55.805 - INFO: Saving best models
+25-12-03 01:50:04.377 - INFO: [epoch: 41, iter:     455, lr:(1.000e-04,)] l_pix: 7.2284e+04 l_hist: 1.0706e-02 
+25-12-03 01:50:10.076 - INFO: # Validation # PSNR: 2.0466e+01:----Best iter:      420 Best PSNR: 2.0965e+01
+25-12-03 01:50:17.047 - INFO: [epoch: 44, iter:     490, lr:(1.000e-04,)] l_pix: 4.5878e+04 l_hist: 1.0706e-02 
+25-12-03 01:50:22.708 - INFO: # Validation # PSNR: 2.1214e+01:----Best iter:      420 Best PSNR: 2.0965e+01
+25-12-03 01:50:22.709 - INFO: Saving best models
+25-12-03 01:50:31.063 - INFO: [epoch: 47, iter:     525, lr:(1.000e-04,)] l_pix: 4.8791e+04 l_hist: 1.1269e-02 
+25-12-03 01:50:36.841 - INFO: # Validation # PSNR: 2.1098e+01:----Best iter:      490 Best PSNR: 2.1214e+01
+25-12-03 01:50:45.155 - INFO: [epoch: 50, iter:     560, lr:(1.000e-04,)] l_pix: 4.7702e+04 l_hist: 1.0381e-02 
+25-12-03 01:50:50.889 - INFO: # Validation # PSNR: 2.1179e+01:----Best iter:      490 Best PSNR: 2.1214e+01
+25-12-03 01:50:58.425 - INFO: [epoch: 54, iter:     595, lr:(1.000e-04,)] l_pix: 6.6342e+04 l_hist: 1.0381e-02 
+25-12-03 01:51:04.166 - INFO: # Validation # PSNR: 2.1018e+01:----Best iter:      490 Best PSNR: 2.1214e+01
+25-12-03 01:51:12.132 - INFO: [epoch: 57, iter:     630, lr:(1.000e-04,)] l_pix: 5.5482e+04 l_hist: 1.0953e-02 
+25-12-03 01:51:17.997 - INFO: # Validation # PSNR: 2.1132e+01:----Best iter:      490 Best PSNR: 2.1214e+01
